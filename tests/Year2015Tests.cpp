@@ -31,7 +31,7 @@ TEST_CASE("Year 2015") {
             std::for_each(inputsResults.begin(), inputsResults.end(), [](const auto& pair) {
                 Year2015 y;
                 CAPTURE("Steps: " + pair.first);
-                CHECK(y.Day1Part1(pair.first) == pair.second);
+                CHECK(y.Day1Part2(pair.first) == pair.second);
             });
         }
     }
