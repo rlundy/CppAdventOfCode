@@ -18,10 +18,14 @@ cc_library(
     ],
     
     # Directories that should be added to the include path when this library is used.
-    includes = ["include"],
+    includes = [
+        "include",
+    ],
     
     # Compiler options for this target. Here, we're specifying C++17 standard.
-    copts = ["/std:c++17"],
+    copts = [
+        "/std:c++17",
+    ],
 )
 
 # Define a C++ test target. This compiles and runs tests for the calculator.
