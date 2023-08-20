@@ -8,11 +8,13 @@ cc_library(
     # The source files to compile for this library.
     srcs = [
         "src/Year2015.cpp",
+        "src/Util.cpp",
     ],
     
     # The header files that are part of this library.
     hdrs = [
         "include/Year2015.hpp",
+        "include/Util.hpp",
     ],
     
     # Directories that should be added to the include path when this library is used.
