@@ -8,12 +8,14 @@ cc_library(
     # The source files to compile for this library.
     srcs = [
         "src/Year2015.cpp",
+        "src/Year2016.cpp",
         "src/Util.cpp",
     ],
     
     # The header files that are part of this library.
     hdrs = [
         "include/Year2015.hpp",
+        "include/Year2016.hpp",
         "include/Util.hpp",
     ],
     
@@ -38,6 +40,7 @@ cc_test(
         "tests/tests_main.cpp",
         "tests/catch_amalgamated.cpp",
         "tests/Year2015Tests.cpp",
+        "tests/Year2016Tests.cpp"
     ],
     
     # Dependencies for this target. We depend on the 'calculator_lib' library defined above.
