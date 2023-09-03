@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Util.hpp"
 
 std::string readFileContents(const std::string& filePath) {
     std::ifstream inFile(filePath);
@@ -13,4 +14,16 @@ std::string readFileContents(const std::string& filePath) {
     std::stringstream buffer;
     buffer << inFile.rdbuf();
     return buffer.str();
+}
+
+std::vector<std::string> split(const std::string& original, const std::string& delimiter) {
+    std::vector<std::string> parts;
+    size_t start = 0, end = 0;
+
+    while ((end = original.find(delimiter, start)) != std::string::npos) {
+        parts.push_back(original.substr(start, end - start));
+        start = end + delimiter.length();
+    }
+    parts.push_back(original.substr(start));
+    return parts;
 }
