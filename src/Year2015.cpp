@@ -2,8 +2,8 @@
 
 int Year2015::Day1Part1(const std::string& input)
 {
-    auto up = std::count(input.begin(), input.end(), '(');
-    auto down = std::count(input.begin(), input.end(), ')');
+    auto up = std::count(input.cbegin(), input.cend(), '(');
+    auto down = std::count(input.cbegin(), input.cend(), ')');
     return static_cast<int>(up - down);
 }
 
