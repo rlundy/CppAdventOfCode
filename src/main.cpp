@@ -5,6 +5,7 @@
 #include "Year2015.hpp"
 #include "Year2016.hpp"
 #include "Year2017.hpp"
+#include "Year2018.hpp"
 #include "Util.hpp"
 
 void showResult(int year, int day, int part, int result) {
@@ -36,4 +37,11 @@ int main() {
     auto input2017_1 = getPuzzleInput(2017, 1);
     showResult(2017, 1, 1, y2017.Day1Part1(input2017_1));
     showResult(2017, 1, 2, y2017.Day1Part2(input2017_1));
+
+    std::cout << std::endl;
+
+    Year2018 y2018;
+    auto input2018_1 = getPuzzleInput(2018, 1);
+    showResult(2018, 1, 1, y2018.Day1Part1(input2018_1));
+    showResult(2018, 1, 2, y2018.Day1Part2(input2018_1));
 }
