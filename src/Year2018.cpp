@@ -9,17 +9,6 @@
 #include "Year2018.hpp"
 #include "Util.hpp"
 
-std::vector<int> Year2018::textToInt(std::vector<std::string> freqText) {
-    std::vector<int> frequencies;
-    std::transform(
-        freqText.cbegin(), 
-        freqText.cend(), 
-        std::back_inserter(frequencies),
-        [](const std::string& s) { return std::stoi(s); }
-    );
-    return frequencies;
-}
-
 int Year2018::Day1Part1(const std::string &input)
 {
     auto parts { split(input, "\n") };

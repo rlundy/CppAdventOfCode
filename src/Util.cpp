@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <format>
+#include <algorithm>
 
 #include "Util.hpp"
 
@@ -38,4 +39,15 @@ std::vector<std::string> split(const std::string& original, const std::string& d
 bool contains(const std::string &text, const std::string &textToFind)
 {
     return text.find(textToFind) != std::string::npos;
+}
+
+std::vector<int> textToInt(std::vector<std::string> freqText) {
+    std::vector<int> frequencies;
+    std::transform(
+        freqText.cbegin(),
+        freqText.cend(),
+        std::back_inserter(frequencies),
+        [](const std::string& s) { return std::stoi(s); }
+    );
+    return frequencies;
 }
