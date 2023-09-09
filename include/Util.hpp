@@ -3,5 +3,8 @@
 
 #pragma once
 
-std::string readFileContents(const std::string& filePath);
+std::string getPuzzleInput(const int year, const int day);
+
+std::string readFileContents(const std::string &filePath);
+
 std::vector<std::string> split(const std::string& original, const std::string& delimiter);

@@ -2,7 +2,14 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <format>
+
 #include "Util.hpp"
+
+std::string getPuzzleInput(const int year, const int day) {
+    auto path = std::format("puzzleInput/Year{}Day{}.txt", year, day);
+    return readFileContents(path);
+}
 
 std::string readFileContents(const std::string& filePath) {
     std::ifstream inFile(filePath);
