@@ -1,18 +1,39 @@
 #include <iostream>
+#include <sstream>
+#include <functional>
 
 #include "Year2015.hpp"
+#include "Year2016.hpp"
+#include "Year2017.hpp"
 #include "Util.hpp"
 
-using std::cout;
-using std::endl;
+void showResult(int year, int day, int part, int result) {
+    auto puzzleInput = getPuzzleInput(year, day);
+    std::ostringstream oss;
+    oss << "Year " << year << " day " << day << " part " << part << ": " << result;
+    auto text = oss.str();
+    std::cout << text << std::endl;
+}
 
 int main() {
-    Year2015 y;
-    auto input2015day1 = readFileContents("C:/Users/rlund/OneDrive/Code/CppAdventOfCode/puzzleInput/Year2015Day1.txt");
-    cout << "Year 2015 day 1 part 1: " << y.Day1Part1(input2015day1) << endl;
-    cout << "Year 2015 day 1 part 2: " << y.Day1Part2(input2015day1) << endl;
+    std::cout << std::endl;
 
-    auto input2016day1 = readFileContents("C:/Users/rlund/OneDrive/Code/CppAdventOfCode/puzzleInput/Year2016Day1.txt");
-    cout << "Year 2016 day 1 part 1: " << y.Day1Part1(input2016day1) << endl;
-    cout << "Year 2016 day 1 part 2: " << y.Day1Part2(input2016day1) << endl;
+    Year2015 y2015;
+    auto input2015_1 = getPuzzleInput(2015, 1);
+    showResult(2015, 1, 1, y2015.Day1Part1(input2015_1));
+    showResult(2015, 1, 2, y2015.Day1Part2(input2015_1));
+
+    std::cout << std::endl;
+
+    Year2016 y2016;
+    auto input2016_1 = getPuzzleInput(2016, 1);
+    showResult(2016, 1, 1, y2016.Day1Part1(input2016_1));
+    showResult(2016, 1, 2, y2016.Day1Part2(input2016_1));
+
+    std::cout << std::endl;
+
+    Year2017 y2017;
+    auto input2017_1 = getPuzzleInput(2017, 1);
+    showResult(2017, 1, 1, y2017.Day1Part1(input2017_1));
+    showResult(2017, 1, 2, y2017.Day1Part2(input2017_1));
 }

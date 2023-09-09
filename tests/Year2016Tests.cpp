@@ -1,7 +1,16 @@
 #include "catch_amalgamated.hpp"
 #include "Year2016.hpp"
+#include "CompassDirection.hpp"
 
 TEST_CASE("Year 2016") {
+    SECTION("Helper methods") {
+        Year2016 y;
+        auto newDirection = y.makeTurn(CompassDirection::NORTH, 'R');
+        CHECK(newDirection == CompassDirection::EAST);
+        auto newDirection2 = y.makeTurn(CompassDirection::NORTH, 'L');
+        CHECK(newDirection2 == CompassDirection::WEST);
+    }
+
     SECTION("Day 1") {
         SECTION("Part 1") {
             Year2016 y;
