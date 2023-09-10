@@ -8,6 +8,7 @@
 #include "Year2018.hpp"
 #include "Year2019.hpp"
 #include "Year2020.hpp"
+#include "Year2021.hpp"
 #include "Util.hpp"
 
 void showResult(int year, int day, int part, int result) {
@@ -60,4 +61,11 @@ int main() {
     auto input2020_1 { getPuzzleInput(2020, 1) };
     showResult(2020, 1, 1, y2020.Day1Part1(input2020_1));
     showResult(2020, 1, 2, y2020.Day1Part2(input2020_1));
+
+    std::cout << std::endl;
+
+    Year2021 y2021;
+    auto input2021_1 { getPuzzleInput(2021, 1) };
+    showResult(2021, 1, 1, y2021.Day1Part1(input2021_1));
+    showResult(2021, 1, 2, y2021.Day1Part2(input2021_1));
 }
