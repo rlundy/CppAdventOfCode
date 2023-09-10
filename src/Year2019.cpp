@@ -21,9 +21,7 @@ int Year2019::getFuelRecursive(const int mass) {
     auto currentMass { mass };
     auto fuel { 0 };
     while (currentMass > 0) {
-        auto newFuel { std::max(getFuel(currentMass), 0) };
-        fuel += newFuel;
-        currentMass = newFuel;
+        fuel += (currentMass = std::max(getFuel(currentMass), 0));
     }
     return fuel;
 }
