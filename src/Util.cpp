@@ -58,3 +58,8 @@ int sum(const std::vector<int> numbers)
 {
     return std::accumulate(numbers.cbegin(), numbers.cend(), 0);
 }
+
+int maxInt(const std::vector<int> numbers)
+{
+    return *std::max_element(numbers.cbegin(), numbers.cend());
+}
