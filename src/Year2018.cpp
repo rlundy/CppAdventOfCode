@@ -11,16 +11,13 @@
 
 int Year2018::Day1Part1(const std::string& input)
 {
-    auto parts { split(input, "\n") };
-    auto frequencies { textToInt(parts) };
-    return sum(frequencies);
+    return sum(inputToVector(input));
 }
 
 int Year2018::Day1Part2(const std::string& input)
 {
     std::set<int> usedFrequencies;
-    auto parts { split(input, "\n") };
-    auto frequencies { textToInt(parts) };
+    auto frequencies { inputToVector(input) };
     auto sum { 0 };
     usedFrequencies.insert(sum);
 

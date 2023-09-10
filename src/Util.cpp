@@ -42,15 +42,16 @@ bool contains(const std::string &text, const std::string &textToFind)
     return text.find(textToFind) != std::string::npos;
 }
 
-std::vector<int> textToInt(std::vector<std::string> freqText) {
-    std::vector<int> frequencies;
+std::vector<int> inputToVector(const std::string& input) {
+    auto parts { split(input, "\n") };
+    std::vector<int> numbers;
     std::transform(
-        freqText.cbegin(),
-        freqText.cend(),
-        std::back_inserter(frequencies),
+        parts.cbegin(),
+        parts.cend(),
+        std::back_inserter(numbers),
         [](const std::string& s) { return std::stoi(s); }
     );
-    return frequencies;
+    return numbers;
 }
 
 int sum(const std::vector<int> numbers)

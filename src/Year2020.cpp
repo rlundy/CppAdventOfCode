@@ -2,7 +2,7 @@
 #include "Util.hpp"
 
 int Year2020::Day1Part1(const std::string& input) {
-    auto numbers { textToInt(split(input, "\n")) };
+    auto numbers { inputToVector(input) };
     for (size_t i = 0; i < numbers.size(); i++)
     for (size_t j = 1; j < numbers.size(); j++)
     {
@@ -15,7 +15,7 @@ int Year2020::Day1Part1(const std::string& input) {
 }
 
 int Year2020::Day1Part2(const std::string& input) {
-    auto numbers { textToInt(split(input, "\n")) };
+    auto numbers { inputToVector(input) };
     for (size_t i = 0; i < numbers.size(); i++)
     for (size_t j = 1; j < numbers.size(); j++)
     for (size_t k = 2; k < numbers.size(); k++)

@@ -11,6 +11,6 @@ std::vector<std::string> split(const std::string& original, const std::string& d
 
 bool contains(const std::string& text, const std::string& textToFind);
 
-std::vector<int> textToInt(std::vector<std::string> freqText);
+std::vector<int> inputToVector(const std::string& input);
 
 int sum(const std::vector<int> numbers);

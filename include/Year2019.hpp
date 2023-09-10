@@ -4,7 +4,6 @@
 
 class Year2019 {
     private:
-        std::vector<int> getMasses(const std::string input);
         int getFuel(const int mass);
         int getFuelRecursive(const int mass);
     public:
