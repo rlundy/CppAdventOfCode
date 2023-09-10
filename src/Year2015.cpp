@@ -7,7 +7,7 @@ int Year2015::Day1Part1(const std::string& input)
     return static_cast<int>(up - down);
 }
 
-int Year2015::Day1Part2(const std::string &input)
+int Year2015::Day1Part2(const std::string& input)
 {
     auto floor { 0 };
     for (auto i { 0 }; i < input.length(); i++) {

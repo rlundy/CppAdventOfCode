@@ -47,7 +47,7 @@ std::tuple<int, int> Year2016::getNextMove(CompassDirection direction) {
     }
 }
 
-int Year2016::Day1Part1(const std::string &input)
+int Year2016::Day1Part1(const std::string& input)
 {
     auto steps { split(input, ", ") };
     auto x { 0 };
@@ -70,7 +70,7 @@ int Year2016::Day1Part1(const std::string &input)
     return std::abs(x) + std::abs(y);
 }
 
-int Year2016::Day1Part2(const std::string &input)
+int Year2016::Day1Part2(const std::string& input)
 {
     auto firstPosition { std::make_tuple(0, 0) };
     std::set<decltype(firstPosition)> positionsVisited { firstPosition };
