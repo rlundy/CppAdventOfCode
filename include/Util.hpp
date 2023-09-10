@@ -13,6 +13,8 @@ bool contains(const std::string& text, const std::string& textToFind);
 
 std::vector<int> inputToVector(const std::string& input);
 
+std::vector<int> textToInt(const std::vector<std::string> input);
+
 int sum(const std::vector<int> numbers);
 
 int maxInt(const std::vector<int> numbers);

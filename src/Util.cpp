@@ -54,6 +54,17 @@ std::vector<int> inputToVector(const std::string& input) {
     return numbers;
 }
 
+std::vector<int> textToInt(std::vector<std::string> texts) {
+    std::vector<int> numbers;
+    std::transform(
+        texts.cbegin(),
+        texts.cend(),
+        std::back_inserter(numbers),
+        [](const std::string& s) { return std::stoi(s); }
+    );
+    return numbers;
+}
+
 int sum(const std::vector<int> numbers)
 {
     return std::accumulate(numbers.cbegin(), numbers.cend(), 0);
