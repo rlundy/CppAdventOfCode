@@ -28,6 +28,10 @@ int main() {
     showResult(2015, 1, 1, y2015.Day1Part1(input2015_1));
     showResult(2015, 1, 2, y2015.Day1Part2(input2015_1));
 
+    auto input2015_2 { getPuzzleInput(2015, 2) };
+    showResult(2015, 2, 1, y2015.Day2Part1(input2015_2));
+    showResult(2015, 2, 2, y2015.Day2Part2(input2015_2));
+
     std::cout << std::endl;
 
     Year2016 y2016;

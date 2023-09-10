@@ -24,3 +24,13 @@ int Year2015::Day1Part2(const std::string& input)
     }
     return -1;
 }
+
+int Year2015::Day2Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2015::Day2Part2(const std::string &input)
+{
+    return -1;
+}
