@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include <functional>
 
 #include "Year2015.hpp"
@@ -13,10 +12,11 @@
 
 void showResult(int year, int day, int part, int result) {
     auto puzzleInput { getPuzzleInput(year, day) };
-    std::ostringstream oss;
-    oss << "Year " << year << " day " << day << " part " << part << ": " << result;
-    auto text { oss.str() };
-    std::cout << text << std::endl;
+    std::cout
+        << "Year " << year
+        << " day " << day
+        << " part " << part << ": "
+        << result << std::endl;
 }
 
 int main() {
