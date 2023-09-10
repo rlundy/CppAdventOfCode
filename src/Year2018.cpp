@@ -13,7 +13,7 @@ int Year2018::Day1Part1(const std::string &input)
 {
     auto parts { split(input, "\n") };
     auto frequencies { textToInt(parts) };
-    return std::accumulate(frequencies.cbegin(), frequencies.cend(), 0);
+    return sum(frequencies);
 }
 
 int Year2018::Day1Part2(const std::string &input)

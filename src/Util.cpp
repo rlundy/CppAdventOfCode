@@ -4,6 +4,7 @@
 #include <string>
 #include <format>
 #include <algorithm>
+#include <numeric>
 
 #include "Util.hpp"
 
@@ -50,4 +51,9 @@ std::vector<int> textToInt(std::vector<std::string> freqText) {
         [](const std::string& s) { return std::stoi(s); }
     );
     return frequencies;
+}
+
+int sum(const std::vector<int> numbers)
+{
+    return std::accumulate(numbers.cbegin(), numbers.cend(), 0);
 }

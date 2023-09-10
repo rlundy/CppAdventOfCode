@@ -31,7 +31,7 @@ int Year2019::Day1Part1(const std::string &input)
     auto masses { getMasses(input) };
     std::vector<int> fuels;
     std::transform(masses.cbegin(), masses.cend(), std::back_inserter(fuels), [this](int mass){ return getFuel(mass); });
-    return std::accumulate(fuels.cbegin(), fuels.cend(), 0);
+    return sum(fuels);
 }
 
 int Year2019::Day1Part2(const std::string &input)
@@ -39,5 +39,5 @@ int Year2019::Day1Part2(const std::string &input)
     auto masses { getMasses(input) };
     std::vector<int> fuels;
     std::transform(masses.cbegin(), masses.cend(), std::back_inserter(fuels), [this](int mass){ return getFuelRecursive(mass); });
-    return std::accumulate(fuels.cbegin(), fuels.cend(), 0);
+    return sum(fuels);
 }
