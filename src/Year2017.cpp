@@ -14,11 +14,11 @@ int Year2017::Day1Part1(const std::string& input)
         }
     }
     numbers.push_back(numbers[0]);
-    int sum{0};
-    for (int i = 0; i < numbers.size() - 1; i++)
+    int sum { 0 };
+    for (int i { 0 }; i < numbers.size() - 1; i++)
     {
-        auto x = numbers[i];
-        auto y = numbers[i + 1];
+        auto x { numbers[i] };
+        auto y { numbers[i + 1] };
         if (x == y) {
             sum += x - '0';
         }
@@ -29,7 +29,7 @@ int Year2017::Day1Part1(const std::string& input)
 
 int Year2017::Day1Part2(const std::string& input)
 {
-    auto halfway = input.length() / 2;
+    auto halfway { input.length() / 2 };
     std::vector<char> numbers;
     for (auto n : input) {
         if (std::isdigit(n)) {
@@ -42,9 +42,9 @@ int Year2017::Day1Part2(const std::string& input)
         }
     }
     int sum{0};
-    for (int i = 0; i < input.length(); i++) {
-        auto x = numbers[i];
-        auto y = numbers[i + halfway];
+    for (int i { 0 }; i < input.length(); i++) {
+        auto x { numbers[i] };
+        auto y { numbers[i + halfway] };
         if (x == y) {
             sum += x - '0';
         }

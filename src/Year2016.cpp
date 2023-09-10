@@ -10,9 +10,9 @@
 #include "CompassDirection.hpp"
 
 CompassDirection Year2016::makeTurn(const CompassDirection direction, const char turn) {
-    auto min = static_cast<int>(CompassDirection::MIN);
-    auto max = static_cast<int>(CompassDirection::MAX);
-    auto directionAsInt = static_cast<int>(direction);
+    auto min { static_cast<int>(CompassDirection::MIN) };
+    auto max { static_cast<int>(CompassDirection::MAX) };
+    auto directionAsInt { static_cast<int>(direction) };
     if (turn == 'L') {
         directionAsInt--;
         if (directionAsInt < min)
@@ -49,19 +49,19 @@ std::tuple<int, int> Year2016::getNextMove(CompassDirection direction) {
 
 int Year2016::Day1Part1(const std::string &input)
 {
-    auto steps = split(input, ", ");
-    auto x = 0;
-    auto y = 0;
-    auto direction = CompassDirection::NORTH;
+    auto steps { split(input, ", ") };
+    auto x { 0 };
+    auto y { 0 };
+    auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto turn = step[0];
-        auto distanceText = step.substr(1);
-        auto distance = std::stoi(distanceText);
+        auto turn { step[0] };
+        auto distanceText { step.substr(1) };
+        auto distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
-        auto nextMove = getNextMove(direction);
-        for (int i = 0; i < distance; i++)
+        auto nextMove { getNextMove(direction) };
+        for (int i { 0 }; i < distance; i++)
         {
-            auto [xChange, yChange] = nextMove;
+            auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;
         }
@@ -72,21 +72,21 @@ int Year2016::Day1Part1(const std::string &input)
 
 int Year2016::Day1Part2(const std::string &input)
 {
-    auto firstPosition = std::make_tuple(0, 0);
+    auto firstPosition { std::make_tuple(0, 0) };
     std::set<decltype(firstPosition)> positionsVisited { firstPosition };
 
-    auto steps = split(input, ", ");
-    auto x = 0;
-    auto y = 0;
-    auto direction = CompassDirection::NORTH;
+    auto steps { split(input, ", ") };
+    auto x { 0 };
+    auto y { 0 };
+    auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto turn = step[0];
-        auto distanceText = step.substr(1);
-        auto distance = std::stoi(distanceText);
+        auto turn { step[0] };
+        auto distanceText { step.substr(1) };
+        auto distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
-        auto nextMove = getNextMove(direction);
-        for (int i = 0; i < distance; i++) {
-            auto [xChange, yChange] = nextMove;
+        auto nextMove { getNextMove(direction) };
+        for (int i {0}; i < distance; i++) {
+            auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;
             bool added;

@@ -31,7 +31,7 @@ int Year2018::Day1Part2(const std::string &input)
         }
         auto f { frequencies[current] };
         sum += f;
-        auto inserted = usedFrequencies.insert(sum);
+        auto inserted { usedFrequencies.insert(sum) };
         if (!inserted.second) {
             return sum;
         }

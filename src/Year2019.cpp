@@ -9,8 +9,8 @@
 
 int Year2019::Day1Part1(const std::string &input)
 {
-    auto massesText = split(input, "\n");
-    auto masses = textToInt(massesText);
+    auto massesText { split(input, "\n") };
+    auto masses { textToInt(massesText) };
     std::vector<int> fuels;
     std::transform(masses.cbegin(), masses.cend(), std::back_inserter(fuels), [](int mass){ return mass / 3 - 2; });
     return std::accumulate(fuels.cbegin(), fuels.cend(), 0);
