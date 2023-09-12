@@ -154,10 +154,7 @@ auto Year2016::getThirteenKeyPad() {
     return keys;
 }
 
-std::string Year2016::Day2Part1(const std::string &input)
-{
-    std::map<char, KeypadKey> keys { getNineKeyPad() };
-
+auto Year2016::getCode(std::map<char, KeypadKey> keys, const std::string& input) {
     KeypadKey current { keys.at('5') };
     std::ostringstream code;
     auto instructionSet { split(input, "\n") };
@@ -171,19 +168,12 @@ std::string Year2016::Day2Part1(const std::string &input)
     return code.str();
 }
 
+std::string Year2016::Day2Part1(const std::string &input)
+{
+    return getCode(getNineKeyPad(), input);
+}
+
 std::string Year2016::Day2Part2(const std::string &input)
 {
-    std::map<char, KeypadKey> keys { getThirteenKeyPad() };
-
-    KeypadKey current { keys.at('5') };
-    std::ostringstream code;
-    auto instructionSet = split(input, "\n");
-    for (auto instructionLine : instructionSet) {
-        for (auto dir : instructionLine) {
-            current = move(keys, current, dir);
-        }
-        code << current.getValue();
-    }
-
-    return code.str();
+    return getCode(getThirteenKeyPad(), input);
 }

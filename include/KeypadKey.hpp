@@ -1,3 +1,5 @@
+#pragma once
+
 #include <optional>
 
 class KeypadKey {
@@ -10,8 +12,8 @@ class KeypadKey {
     public:
         KeypadKey(const char value, const std::optional<char> north, const std::optional<char> south, const std::optional<char> east, const std::optional<char> west);
         char getValue();
-        std::optional<char> getNorth();
-        std::optional<char> getSouth();
-        std::optional<char> getEast();
-        std::optional<char> getWest();
+        std::optional<char> getNorth() const;
+        std::optional<char> getSouth() const;
+        std::optional<char> getEast() const;
+        std::optional<char> getWest() const;
 };

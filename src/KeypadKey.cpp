@@ -1,21 +1,10 @@
 #include "KeypadKey.hpp"
 
-KeypadKey::KeypadKey(char value, std::optional<char> north = std::nullopt, std::optional<char> south = std::nullopt, std::optional<char> east = std::nullopt, std::optional<char> west = std::nullopt)
-{
-    this->value = value;
-    if (north.has_value())
-        this->north = north;
-    if (south.has_value())
-        this->south = south;
-    if (west.has_value())
-        this->west = west;
-    if (east.has_value())
-        this->east = east;
-}
+KeypadKey::KeypadKey(char value, std::optional<char> north, std::optional<char> south, std::optional<char> east, std::optional<char> west): value(value), north(north), south(south), east(east), west(west) { }
 
 char KeypadKey::getValue() { return value; }
 
-std::optional<char> KeypadKey::getNorth() { return north; }
-std::optional<char> KeypadKey::getSouth() { return south; }
-std::optional<char> KeypadKey::getEast() { return east; }
-std::optional<char> KeypadKey::getWest() { return west; }
+std::optional<char> KeypadKey::getNorth() const { return north; }
+std::optional<char> KeypadKey::getSouth() const { return south; }
+std::optional<char> KeypadKey::getEast() const { return east; }
+std::optional<char> KeypadKey::getWest() const { return west; }
