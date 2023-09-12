@@ -11,15 +11,6 @@
 #include "Year2022.hpp"
 #include "Util.hpp"
 
-void showResult(int year, int day, int part, int result) {
-    auto puzzleInput { getPuzzleInput(year, day) };
-    std::cout
-        << "Year " << year
-        << " day " << day
-        << " part " << part << ": "
-        << result << std::endl;
-}
-
 int main() {
     std::cout << std::endl;
 
@@ -38,6 +29,10 @@ int main() {
     auto input2016_1 { getPuzzleInput(2016, 1) };
     showResult(2016, 1, 1, y2016.Day1Part1(input2016_1));
     showResult(2016, 1, 2, y2016.Day1Part2(input2016_1));
+
+    auto input2016_2 { getPuzzleInput(2016, 2) };
+    showResult(2016, 2, 1, y2016.Day2Part1(input2016_2));
+    showResult(2016, 2, 2, y2016.Day2Part2(input2016_2));
 
     std::cout << std::endl;
 

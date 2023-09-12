@@ -23,3 +23,17 @@ TEST_CASE("Year 2016 Day 1 Part 2") {
     auto test { std::bind(&Year2016::Day1Part2, &y, std::placeholders::_1) };
     CHECK(test("R8, R4, R4, R8") == 4);
 }
+
+TEST_CASE("Year 2016 Day 2 Part 1") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day2Part1, &y, std::placeholders::_1) };
+
+    CHECK(test("ULL\nRRDDD\nLURDL\nUUUUD") == "1985");
+    CHECK(test("UUULLL\nRDRURRR\nDLDLDLDL\nRURDRDR") == "1379");
+}
+
+TEST_CASE("Year 2016 Day 2 Part 2") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day2Part2, &y, std::placeholders::_1) };
+    CHECK(test("ULL\nRRDDD\nLURDL\nUUUUD") == "5DB3");
+}

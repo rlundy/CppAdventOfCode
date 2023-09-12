@@ -4,10 +4,14 @@
 #include <vector>
 #include <set>
 #include <stdexcept>
+#include <sstream>
+#include <iostream>
+#include <map>
 
 #include "Year2016.hpp"
 #include "Util.hpp"
 #include "CompassDirection.hpp"
+#include "KeypadKey.hpp"
 
 CompassDirection Year2016::makeTurn(const CompassDirection direction, const char turn) {
     auto min { static_cast<int>(CompassDirection::MIN) };
@@ -97,4 +101,89 @@ int Year2016::Day1Part2(const std::string& input)
     }
 
     return 0;
+}
+
+auto move(std::map<char, KeypadKey> keys, KeypadKey current, char direction) {
+    char nextValue;
+    switch (direction) {
+        case 'U':
+            nextValue = current.getNorth().value_or(current.getValue());
+            break;
+        case 'D':
+            nextValue = current.getSouth().value_or(current.getValue());
+            break;
+        case 'L':
+            nextValue = current.getWest().value_or(current.getValue());
+            break;
+        case 'R':
+            nextValue = current.getEast().value_or(current.getValue());
+            break;
+    }
+    return keys.at(nextValue);
+}
+
+auto Year2016::getNineKeyPad() {
+    std::map<char, KeypadKey> keys;
+    keys.insert({'1', KeypadKey('1', std::nullopt, '4', '2', std::nullopt)});
+    keys.insert({'2', KeypadKey('2', std::nullopt, '5', '3', '1')});
+    keys.insert({'3', KeypadKey('3', std::nullopt, '6', std::nullopt, '2')});
+    keys.insert({'4', KeypadKey('4', '1', '7', '5', std::nullopt)});
+    keys.insert({'5', KeypadKey('5', '2', '8', '6', '4')});
+    keys.insert({'6', KeypadKey('6', '3', '9', std::nullopt, '5')});
+    keys.insert({'7', KeypadKey('7', '4', std::nullopt, '8', std::nullopt)});
+    keys.insert({'8', KeypadKey('8', '5', std::nullopt, '9', '7')});
+    keys.insert({'9', KeypadKey('9', '6', std::nullopt, std::nullopt, '8')});
+    return keys;
+}
+
+auto Year2016::getThirteenKeyPad() {
+    std::map<char, KeypadKey> keys;
+    keys.insert({'1', KeypadKey('1', std::nullopt, '3', std::nullopt, std::nullopt)});
+    keys.insert({'2', KeypadKey('2', std::nullopt, '6', '3', std::nullopt)});
+    keys.insert({'3', KeypadKey('3', '1', '7', '4', '2')});
+    keys.insert({'4', KeypadKey('4', std::nullopt, '8', std::nullopt, '3')});
+    keys.insert({'5', KeypadKey('5', std::nullopt, std::nullopt, '6', std::nullopt)});
+    keys.insert({'6', KeypadKey('6', '2', 'A', '7', '5')});
+    keys.insert({'7', KeypadKey('7', '3', 'B', '8', '6')});
+    keys.insert({'8', KeypadKey('8', '4', 'C', '9', '7')});
+    keys.insert({'9', KeypadKey('9', std::nullopt, std::nullopt, std::nullopt, '8')});
+    keys.insert({'A', KeypadKey('A', '6', std::nullopt, 'B', std::nullopt)});
+    keys.insert({'B', KeypadKey('B', '7', 'D', 'C', 'A')});
+    keys.insert({'C', KeypadKey('C', '8', std::nullopt, std::nullopt, 'B')});
+    keys.insert({'D', KeypadKey('D', 'B', std::nullopt, std::nullopt, std::nullopt)});
+    return keys;
+}
+
+std::string Year2016::Day2Part1(const std::string &input)
+{
+    std::map<char, KeypadKey> keys { getNineKeyPad() };
+
+    KeypadKey current { keys.at('5') };
+    std::ostringstream code;
+    auto instructionSet { split(input, "\n") };
+    for (auto instructionLine : instructionSet) {
+        for (auto dir : instructionLine) {
+            current = move(keys, current, dir);
+        }
+        code << current.getValue();
+    }
+
+    return code.str();
+}
+
+std::string Year2016::Day2Part2(const std::string &input)
+{
+    std::map<char, KeypadKey> keys { getThirteenKeyPad() };
+
+    KeypadKey current { keys.at('5') };
+    std::ostringstream code;
+    auto instructionSet = split(input, "\n");
+    for (auto instructionLine : instructionSet) {
+        for (auto dir : instructionLine) {
+            current = move(keys, current, dir);
+        }
+        code << current.getValue();
+    }
+
+    return code.str();
 }
