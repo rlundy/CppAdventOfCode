@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 #pragma once
 
@@ -18,3 +19,13 @@ std::vector<int> textToInt(const std::vector<std::string> input);
 int sum(const std::vector<int> numbers);
 
 int maxInt(const std::vector<int> numbers);
+
+template<typename T>
+void showResult(int year, int day, int part, T result) {
+    auto puzzleInput { getPuzzleInput(year, day) };
+    std::cout
+        << "Year " << year
+        << " day " << day
+        << " part " << part << ": "
+        << result << std::endl;
+}
