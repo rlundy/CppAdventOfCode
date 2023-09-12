@@ -70,7 +70,26 @@ int Year2017::Day2Part1(const std::string &input)
     return sum;
 }
 
+auto Year2017::getEvenlyDivisible(std::vector<int> numbers) {
+    for (auto i : numbers) {
+        for (auto j : numbers) {
+            if (i > j && i % j == 0) {
+                return i / j;
+            }
+        }
+    }
+    return INT32_MIN;
+}
+
 int Year2017::Day2Part2(const std::string &input)
 {
-    return -1;
+    int sum { 0 };
+    auto lines { split(input, "\n") };
+    for (auto line : lines) {
+        auto numberTexts { split(line, "\t") };
+        auto numbers { textToInt(numberTexts) };
+        std::sort(numbers.rbegin(), numbers.rend());
+        sum += getEvenlyDivisible(numbers);
+    }
+    return sum;
 }
