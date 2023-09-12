@@ -52,3 +52,13 @@ int Year2017::Day1Part2(const std::string& input)
 
     return sum;
 }
+
+int Year2017::Day2Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2017::Day2Part2(const std::string &input)
+{
+    return -1;
+}
