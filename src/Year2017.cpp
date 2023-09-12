@@ -2,8 +2,10 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <algorithm>
 
 #include "Year2017.hpp"
+#include "Util.hpp"
 
 int Year2017::Day1Part1(const std::string& input)
 {
@@ -55,7 +57,17 @@ int Year2017::Day1Part2(const std::string& input)
 
 int Year2017::Day2Part1(const std::string &input)
 {
-    return -1;
+    int sum { 0 };
+    auto lines { split(input, "\n") };
+    for (auto line : lines) {
+        auto numberTexts { split(line, "\t") };
+        auto numbers { textToInt(numberTexts) };
+        std::sort(numbers.begin(), numbers.end());
+        auto smallest { numbers.at(0) };
+        auto biggest { numbers.at(numbers.size() - 1 )};
+        sum += biggest - smallest;
+    }
+    return sum;
 }
 
 int Year2017::Day2Part2(const std::string &input)
