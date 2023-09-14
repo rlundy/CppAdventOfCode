@@ -78,7 +78,37 @@ int Year2018::Day2Part1(const std::string &input)
     return hasTwoCount * hasThreeCount;
 }
 
+auto Year2018::findDifferingPositions(const std::string code, const std::string otherCode) {
+    std::vector<int> differingPositions;
+    for (auto i = 0; i < code.size(); i++)
+    {
+        if (code[i] != otherCode[i]) {
+            differingPositions.push_back(i);
+        }
+    }
+    return differingPositions;
+}
+
+auto Year2018::removePosition(std::string code, int position) {
+    if (position == 0)
+        return code.substr(1);
+    if (position == code.size() - 1)
+        return code.substr(0, code.size() - 2);
+    return code.substr(0, position) + code.substr(position + 1);
+}
+
 std::string Year2018::Day2Part2(const std::string &input)
 {
+    auto codes = split(input, "\n");
+    for (auto code : codes) {
+        for (auto otherCode : codes) {
+            if (code > otherCode) {
+                auto differingPositions = findDifferingPositions(code, otherCode);
+                if (differingPositions.size() == 1) {
+                    return removePosition(code, differingPositions.at(0));
+                }
+            }
+        }
+    }
     return "-1";
 }
