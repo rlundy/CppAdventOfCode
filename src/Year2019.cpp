@@ -6,6 +6,7 @@
 
 #include "Year2019.hpp"
 #include "Util.hpp"
+#include "IntCode.hpp"
 
 int Year2019::getFuel(const int mass)
 {
@@ -39,7 +40,11 @@ int Year2019::Day1Part2(const std::string& input)
 
 int Year2019::Day2Part1(const std::string &input)
 {
-    return -1;
+    IntCode ic = { input };
+    ic.replace(1, 12);
+    ic.replace(2, 2);
+    ic.process();
+    return ic.getPosition(0);
 }
 
 int Year2019::Day2Part2(const std::string &input)
