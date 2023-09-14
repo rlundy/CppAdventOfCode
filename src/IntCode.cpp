@@ -4,6 +4,12 @@
 #include "IntCode.hpp"
 #include "Util.hpp"
 
+IntCode::IntCode(std::string instructions)
+{
+    originalInput = instructions;
+    reset();
+}
+
 void IntCode::verifyPosition(int position) {
     if (position < 0 || position >= memory.size()) {
         std::ostringstream output;
@@ -53,13 +59,6 @@ void IntCode::process()
     }
 }
 
-IntCode::IntCode(std::string instructions)
-{
-    auto numberTexts { split(instructions, ",") };
-    auto numbers { textToInt(numberTexts) };
-    memory.insert(memory.begin(), numbers.cbegin(), numbers.cend());
-}
-
 void IntCode::replace(int position, int value) {
     verifyPosition(position);
     memory[position] = value;
@@ -85,4 +84,11 @@ std::string IntCode::getState()
         }
     }
     return output.str();
+}
+
+void IntCode::reset()
+{
+    auto numberTexts { split(originalInput, ",") };
+    auto numbers { textToInt(numberTexts) };
+    memory.insert(memory.begin(), numbers.cbegin(), numbers.cend());
 }

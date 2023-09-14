@@ -46,9 +46,3 @@ TEST_CASE("IntCode computer") {
         CHECK(ic.getState() == "30,1,1,4,2,5,6,0,99");
     }
 }
-
-// TEST_CASE("Year 2019 Day 2 Part 2") {
-//     Year2019 y;
-//     auto test { std::bind(&Year2019::Day2Part2, &y, std::placeholders::_1) };
-//     CHECK(test("") == 0);
-// }
