@@ -74,6 +74,10 @@ int main() {
     showResult(2020, 1, 1, y2020.Day1Part1(input2020_1));
     showResult(2020, 1, 2, y2020.Day1Part2(input2020_1));
 
+    auto input2020_2 { getPuzzleInput(2020, 2) };
+    showResult(2020, 2, 1, y2020.Day2Part1(input2020_2));
+    showResult(2020, 2, 2, y2020.Day2Part2(input2020_2));
+
     std::cout << std::endl;
 
     Year2021 y2021;

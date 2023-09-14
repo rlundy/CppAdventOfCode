@@ -29,3 +29,13 @@ int Year2020::Day1Part2(const std::string& input) {
     }
     return -1;
 }
+
+int Year2020::Day2Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2020::Day2Part2(const std::string &input)
+{
+    return -1;
+}
