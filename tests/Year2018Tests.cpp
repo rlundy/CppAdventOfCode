@@ -19,3 +19,15 @@ TEST_CASE("Year 2018 Day 1 Part 2") {
     CHECK(test("-6\n+3\n+8\n+5\n-6") == 5);
     CHECK(test("+7\n+7\n-2\n-7\n-4") == 14);
 }
+
+TEST_CASE("Year 2018 Day 2 Part 1") {
+    Year2018 y;
+    auto test { std::bind(&Year2018::Day2Part1, &y, std::placeholders::_1) };
+    CHECK(test("abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab") == 12);
+}
+
+TEST_CASE("Year 2018 Day 2 Part 2") {
+    Year2018 y;
+    auto test { std::bind(&Year2018::Day2Part2, &y, std::placeholders::_1) };
+    CHECK(test("abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz") == "fgij");
+}
