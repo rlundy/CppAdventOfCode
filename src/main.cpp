@@ -63,6 +63,10 @@ int main() {
     showResult(2019, 1, 1, y2019.Day1Part1(input2019_1));
     showResult(2019, 1, 2, y2019.Day1Part2(input2019_1));
 
+    auto input2019_2 { getPuzzleInput(2019, 2) };
+    showResult(2019, 2, 1, y2019.Day2Part1(input2019_2));
+    showResult(2019, 2, 2, y2019.Day2Part2(input2019_2));
+
     std::cout << std::endl;
 
     Year2020 y2020;

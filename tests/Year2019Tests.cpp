@@ -17,3 +17,15 @@ TEST_CASE("Year 2019 Day 1 Part 2") {
     CHECK(test("1969") == 966);
     CHECK(test("100756") == 50346);
 }
+
+TEST_CASE("Year 2019 Day 2 Part 1") {
+    Year2019 y;
+    auto test { std::bind(&Year2019::Day2Part1, &y, std::placeholders::_1) };
+    CHECK(test("") == 0);
+}
+
+TEST_CASE("Year 2019 Day 2 Part 2") {
+    Year2019 y;
+    auto test { std::bind(&Year2019::Day2Part2, &y, std::placeholders::_1) };
+    CHECK(test("") == 0);
+}

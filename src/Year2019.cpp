@@ -36,3 +36,13 @@ int Year2019::Day1Part2(const std::string& input)
     std::transform(masses.cbegin(), masses.cend(), std::back_inserter(fuels), [this](int mass){ return getFuelRecursive(mass); });
     return sum(fuels);
 }
+
+int Year2019::Day2Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2019::Day2Part2(const std::string &input)
+{
+    return -1;
+}
