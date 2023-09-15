@@ -7,6 +7,8 @@ class Year2020 {
     public:
         int Day1Part1(const std::string& input);
         int Day1Part2(const std::string& input);
-        int Day2Part1(const std::string& input);
-        int Day2Part2(const std::string& input);
+        bool IsValid(const std::string &passwordFileLine);
+        int Day2Part1(const std::string &input);
+        bool IsValidPart2(const std::string &passwordFileLine);
+        int Day2Part2(const std::string &input);
 };
