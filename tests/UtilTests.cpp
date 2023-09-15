@@ -15,3 +15,8 @@ TEST_CASE("Contains") {
     CHECK(contains("ABCdefGHI", "def"));
     CHECK_FALSE(contains("ABCdefGHI", "DEF"));
 }
+
+TEST_CASE("Trim") {
+    std::string original { " abc def " };
+    CHECK(trim(original) == "abc def" );
+}

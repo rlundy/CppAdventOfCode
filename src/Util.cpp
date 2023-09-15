@@ -5,6 +5,7 @@
 #include <format>
 #include <algorithm>
 #include <numeric>
+#include <cctype>
 
 #include "Util.hpp"
 
@@ -65,4 +66,17 @@ int sum(const std::vector<int> numbers)
 int maxInt(const std::vector<int> numbers)
 {
     return *std::max_element(numbers.cbegin(), numbers.cend());
+}
+
+std::string trim(const std::string text)
+{
+    auto startAt { 0 };
+    auto endAt { text.size() - 1 };
+    while (std::isspace(text[startAt])) {
+        startAt++;
+    }
+    while (std::isspace(text[endAt])) {
+        endAt--;
+    }
+    return text.substr(startAt, endAt - startAt + 1);
 }

@@ -20,6 +20,8 @@ int sum(const std::vector<int> numbers);
 
 int maxInt(const std::vector<int> numbers);
 
+std::string trim(const std::string text);
+
 template<typename T>
 void showResult(int year, int day, int part, T result) {
     auto puzzleInput { getPuzzleInput(year, day) };
