@@ -20,7 +20,7 @@ void IntCodeMemory::reboot()
 void IntCodeMemory::verifyPosition(size_t position) const {
     if (position < 0 || position >= memory.size()) {
         std::ostringstream output;
-        output << "Bad index.  ";
+        output << "Bad index: " << position << ".  ";
         if (memory.empty()) {
             output << "There are no valid positions.";
         }
