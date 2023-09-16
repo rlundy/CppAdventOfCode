@@ -37,18 +37,12 @@ void IntCode::process()
                 inputPos1 = memory->get(currentPos + 1);
                 inputPos2 = memory->get(currentPos + 2);
                 outputPos = memory->get(currentPos + 3);
-                verifyPosition(inputPos1);
-                verifyPosition(inputPos2);
-                verifyPosition(outputPos);
                 memory->set(outputPos, memory->get(inputPos1) + memory->get(inputPos2));
                 break;
             case IntCodeOperation::Multiply:
                 inputPos1 = memory->get(currentPos + 1);
                 inputPos2 = memory->get(currentPos + 2);
                 outputPos = memory->get(currentPos + 3);
-                verifyPosition(inputPos1);
-                verifyPosition(inputPos2);
-                verifyPosition(outputPos);
                 memory->set(outputPos, memory->get(inputPos1) * memory->get(inputPos2));
                 break;
             case IntCodeOperation::End:
@@ -62,7 +56,6 @@ void IntCode::process()
 }
 
 void IntCode::replace(int position, int value) {
-    verifyPosition(position);
     memory->set(position, value);
 }
 
