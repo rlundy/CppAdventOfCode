@@ -74,14 +74,12 @@ std::string IntCode::getState()
 {
     std::ostringstream output;
     auto isEmpty { true };
-    for (auto pos : memory) {
-        if (isEmpty) {
-            isEmpty = false;
-            output << pos;
+    for (auto i { 0 }; i < memory.size(); i++) {
+        if (i == 0) {
+            output << memory[i];
         }
         else {
-            output << ",";
-            output << pos;
+            output << "," << memory[i];
         }
     }
     return output.str();
