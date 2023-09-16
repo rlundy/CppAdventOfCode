@@ -85,7 +85,7 @@ std::string IntCode::getState()
     return output.str();
 }
 
-void IntCode::reset()
+void IntCode::reboot()
 {
-    memory.reset();
+    memory->reboot();
 }

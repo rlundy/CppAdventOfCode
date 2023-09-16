@@ -52,7 +52,7 @@ int Year2019::Day2Part2(const std::string &input)
     IntCode ic { input };
     for (auto a { 0 }; a < 100; a++)
     for (auto b { 0 }; b < 100; b++) {
-        ic.reset();
+        ic.reboot();
         ic.replace(1, a);
         ic.replace(2, b);
         ic.process();

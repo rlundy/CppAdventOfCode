@@ -6,10 +6,10 @@
 
 IntCodeMemory::IntCodeMemory(const std::string &instructions): originalInstructions(instructions)
 {
-    reset();
+    reboot();
 }
 
-void IntCodeMemory::reset()
+void IntCodeMemory::reboot()
 {
     std::cout << "Resetting IntCodeMemory..." << std::endl;
     std::cout << "Instructions: [" << originalInstructions << "]" << std::endl;

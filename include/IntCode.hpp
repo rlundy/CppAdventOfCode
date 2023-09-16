@@ -17,5 +17,5 @@ class IntCode {
         IntCode(std::string instructions);
         int getPosition(int position);
         std::string getState();
-        void reset();
+        void reboot();
 };

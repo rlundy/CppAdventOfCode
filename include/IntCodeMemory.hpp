@@ -13,7 +13,7 @@ class IntCodeMemory {
         size_t size();
         void clear();
         bool empty();
-        void reset();
+        void reboot();
         int get(size_t index) const;
         void set(size_t index, int value);
 };
