@@ -18,9 +18,8 @@ std::vector<int> toCalorieSums(const std::string& input) {
     auto calories { toCalories(input) };
     std::vector<int> calorieSums;
     int currentSum { 0 };
-    int i { 0 };
     int current { 0 };
-    while (i < calories.size()) {
+    for (auto i { 0 }; i < calories.size(); i++) {
         current = calories[i];
         if (current == 0) {
             calorieSums.push_back(currentSum);
@@ -29,7 +28,6 @@ std::vector<int> toCalorieSums(const std::string& input) {
         else {
             currentSum += current;
         }
-        i++;
     }
     calorieSums.push_back(currentSum);
     return calorieSums;
