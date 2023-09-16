@@ -19,7 +19,7 @@ int Year2018::Day1Part1(const std::string& input)
 int Year2018::Day1Part2(const std::string& input)
 {
     std::set<int> usedFrequencies;
-    auto frequencies { inputToVector(input) };
+    auto const frequencies { inputToVector(input) };
     auto sum { 0 };
     usedFrequencies.insert(sum);
 
@@ -28,9 +28,9 @@ int Year2018::Day1Part2(const std::string& input)
         if (current >= frequencies.size()) {
             current = 0;
         }
-        auto f { frequencies[current] };
+        auto const f { frequencies[current] };
         sum += f;
-        auto inserted { usedFrequencies.insert(sum) };
+        auto const inserted { usedFrequencies.insert(sum) };
         if (!inserted.second) {
             return sum;
         }
