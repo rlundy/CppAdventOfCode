@@ -87,7 +87,6 @@ std::string Year2018::Day2Part2(const std::string& input)
             copy.replace(i, 1, "_");
             auto [it, added] { codesWithOneLetterBlankedOut.insert(copy) };
             if (!added) {
-                std::cout << "Original code: " << code << std::endl;
                 copy.replace(i, 1, "");
                 return copy;
             }
