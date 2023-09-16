@@ -38,7 +38,7 @@ int Year2018::Day1Part2(const std::string& input)
     }
 }
 
-auto Year2018::group(std::string letters) {
+auto Year2018::group(const std::string& letters) {
     letterGroup grouped;
     for (auto letter : letters) {
         if (grouped.contains(letter))
@@ -49,8 +49,8 @@ auto Year2018::group(std::string letters) {
     return grouped;
 }
 
-auto Year2018::hasCount(letterGroup group, int expectedRepeatedLetterCount) {
-    auto numberWithCount { std::count_if(
+auto Year2018::hasCount(const letterGroup group, const int expectedRepeatedLetterCount) {
+    auto const numberWithCount { std::count_if(
         group.cbegin(),
         group.cend(),
         [expectedRepeatedLetterCount](std::pair<char, int> pair){ return pair.second == expectedRepeatedLetterCount; }
@@ -58,15 +58,15 @@ auto Year2018::hasCount(letterGroup group, int expectedRepeatedLetterCount) {
     return numberWithCount > 0;
 }
 
-auto Year2018::hasOneThreeLetterSet(letterGroup group) {
+auto Year2018::hasOneThreeLetterSet(const letterGroup group) {
     return hasCount(group, 3);
 }
 
-auto Year2018::hasOneTwoLetterSet(letterGroup group) {
+auto Year2018::hasOneTwoLetterSet(const letterGroup group) {
     return hasCount(group, 2);
 }
 
-int Year2018::Day2Part1(const std::string &input)
+int Year2018::Day2Part1(const std::string& input)
 {
     auto codes { split(input, "\n") };
     std::vector<letterGroup> grouped;
@@ -76,9 +76,9 @@ int Year2018::Day2Part1(const std::string &input)
     return hasTwoCount * hasThreeCount;
 }
 
-auto Year2018::findDifferingPositions(const std::string code, const std::string otherCode) {
+auto Year2018::findDifferingPositions(const std::string& code, const std::string& otherCode) {
     std::vector<int> differingPositions;
-    for (auto i = 0; i < code.size(); i++)
+    for (size_t i = 0; i < code.size(); i++)
     {
         if (code[i] != otherCode[i]) {
             differingPositions.push_back(i);
@@ -87,7 +87,7 @@ auto Year2018::findDifferingPositions(const std::string code, const std::string 
     return differingPositions;
 }
 
-auto Year2018::removePosition(std::string code, int position) {
+auto Year2018::removePosition(const std::string& code, const int position) {
     if (position == 0)
         return code.substr(1);
     if (position == code.size() - 1)
@@ -95,13 +95,13 @@ auto Year2018::removePosition(std::string code, int position) {
     return code.substr(0, position) + code.substr(position + 1);
 }
 
-std::string Year2018::Day2Part2(const std::string &input)
+std::string Year2018::Day2Part2(const std::string& input)
 {
-    auto codes = split(input, "\n");
+    auto const codes = split(input, "\n");
     for (auto code : codes) {
         for (auto otherCode : codes) {
             if (code > otherCode) {
-                auto differingPositions = findDifferingPositions(code, otherCode);
+                auto const differingPositions { findDifferingPositions(code, otherCode) };
                 if (differingPositions.size() == 1) {
                     return removePosition(code, differingPositions.at(0));
                 }
