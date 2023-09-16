@@ -3,6 +3,7 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include <stdexcept>
 
 #include "Year2017.hpp"
 #include "Util.hpp"
@@ -58,7 +59,7 @@ auto Year2017::getEvenlyDivisible(std::vector<int> numbers) {
             }
         }
     }
-    return INT32_MIN;
+    throw std::logic_error("No two numbers found where one is evenly divisible by the other.");
 }
 
 int Year2017::Day2Part2(const std::string &input)
