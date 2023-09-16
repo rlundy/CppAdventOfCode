@@ -9,42 +9,30 @@
 
 int Year2017::Day1Part1(const std::string& input)
 {
-    std::vector<char> numbers;
-    std::transform(input.cbegin(), input.cend(), std::back_inserter(numbers), [](char ch){ return ch; });
-    numbers.push_back(numbers[0]);
+    const auto adjustedInput = input + input[0];
     auto sum { 0 };
-    for (size_t i { 0 }; i < numbers.size() - 1; i++)
-    {
-        auto const x { numbers[i] };
-        auto const y { numbers[i + 1] };
+    for (size_t i { 0 }; i < input.size(); i++) {
+        auto const x { adjustedInput[i] };
+        auto const y { adjustedInput[i + 1] };
         if (x == y) {
             sum += x - '0';
         }
     }
-    
     return sum;
 }
 
 int Year2017::Day1Part2(const std::string& input)
 {
-    std::vector<char> numbers;
-    std::transform(input.cbegin(), input.cend(), std::back_inserter(numbers), [](char ch){ return ch; });
-
-    auto halfway { input.length() / 2 };
-    auto itBack = input.end();
-    std::advance(itBack, -halfway);
-    std::transform(input.cbegin(), itBack, std::back_inserter(numbers), [](char ch){ return ch; });
-
     auto sum { 0 };
-    for (size_t i { 0 }; i < input.length(); i++) {
-        auto const x { numbers[i] };
-        auto const y { numbers[i + halfway] };
+    auto halfway { input.length() / 2 };
+    for (size_t i { 0 }; i < halfway; i++) {
+        auto const x { input[i] };
+        auto const y { input[i + halfway] };
         if (x == y) {
             sum += x - '0';
         }
     }
-
-    return sum;
+    return sum * 2;
 }
 
 int Year2017::Day2Part1(const std::string &input)
