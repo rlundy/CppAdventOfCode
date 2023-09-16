@@ -52,11 +52,10 @@ int Year2017::Day2Part1(const std::string &input)
 }
 
 auto Year2017::getEvenlyDivisible(std::vector<int> numbers) {
-    for (auto i : numbers) {
-        for (auto j : numbers) {
-            if (i > j && i % j == 0) {
-                return i / j;
-            }
+    for (auto i : numbers)
+    for (auto j : numbers) {
+        if (i > j && i % j == 0) {
+            return i / j;
         }
     }
     throw std::logic_error("No two numbers found where one is evenly divisible by the other.");
