@@ -39,7 +39,6 @@ int Year2022::Day1Part1(const std::string& input) {
 
 int Year2022::Day1Part2(const std::string& input) {
     auto calorieSums { toCalorieSums(input) };
-    std::sort(calorieSums.begin(), calorieSums.end());
-    std::reverse(calorieSums.begin(), calorieSums.end());
+    std::partial_sort(calorieSums.rbegin(), calorieSums.rend() - 2, calorieSums.rend());
     return calorieSums[0] + calorieSums[1] + calorieSums[2];
 }
