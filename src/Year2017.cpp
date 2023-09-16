@@ -16,8 +16,8 @@ int Year2017::Day1Part1(const std::string& input)
         }
     }
     numbers.push_back(numbers[0]);
-    int sum { 0 };
-    for (int i { 0 }; i < numbers.size() - 1; i++)
+    auto sum { 0 };
+    for (size_t i { 0 }; i < numbers.size() - 1; i++)
     {
         auto x { numbers[i] };
         auto y { numbers[i + 1] };
@@ -43,8 +43,8 @@ int Year2017::Day1Part2(const std::string& input)
             numbers.push_back(n);
         }
     }
-    int sum{0};
-    for (int i { 0 }; i < input.length(); i++) {
+    auto sum { 0 };
+    for (size_t i { 0 }; i < input.length(); i++) {
         auto x { numbers[i] };
         auto y { numbers[i + halfway] };
         if (x == y) {
