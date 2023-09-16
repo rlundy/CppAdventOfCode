@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iostream>
 #include <map>
+#include <utility>
 
 #include "Year2016.hpp"
 #include "Util.hpp"
@@ -14,40 +15,35 @@
 #include "KeypadKey.hpp"
 
 CompassDirection Year2016::makeTurn(const CompassDirection direction, const char turn) {
-    auto min { static_cast<int>(CompassDirection::MIN) };
-    auto max { static_cast<int>(CompassDirection::MAX) };
+    auto const min { static_cast<int>(CompassDirection::MIN) };
+    auto const max { static_cast<int>(CompassDirection::MAX) };
     auto directionAsInt { static_cast<int>(direction) };
-    if (turn == 'L') {
-        directionAsInt--;
-        if (directionAsInt < min)
-            directionAsInt = max;
-    }
-    else if (turn == 'R') {
-        directionAsInt++;
-        if (directionAsInt > max) {
-            directionAsInt = min;
-        }
+    switch (turn) {
+        case 'L':
+            directionAsInt--;
+            if (directionAsInt < min) {
+                directionAsInt = max;
+            }
+            break;
+        case 'R':
+            directionAsInt++;
+            if (directionAsInt > max) {
+                directionAsInt = min;
+            }
+            break;
+        default:
+            throw std::invalid_argument((std::ostringstream() << "Bad direction: " << turn).str());
     }
     return static_cast<CompassDirection>(directionAsInt);
 }
 
-std::tuple<int, int> Year2016::getNextMove(CompassDirection direction) {
+std::pair<int, int> Year2016::getNextMove(const CompassDirection direction) {
     switch (direction) {
-        case CompassDirection::NORTH:
-            return std::make_tuple(0, -1);
-            break;
-        case CompassDirection::SOUTH:
-            return std::make_tuple(0, 1);
-            break;
-        case CompassDirection::EAST:
-            return std::make_tuple(1, 0);
-            break;
-        case CompassDirection::WEST:
-            return std::make_tuple(-1, 0);
-            break;
-        default:
-            throw std::invalid_argument("Not a valid compass direction.");
-            break;
+        case CompassDirection::NORTH: return std::make_pair(0, -1);
+        case CompassDirection::SOUTH: return std::make_pair(0, 1);
+        case CompassDirection::EAST: return std::make_pair(1, 0);
+        case CompassDirection::WEST: return std::make_pair(-1, 0);
+        default: throw std::invalid_argument("Not a valid compass direction.");
     }
 }
 
@@ -58,14 +54,13 @@ int Year2016::Day1Part1(const std::string& input)
     auto y { 0 };
     auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto turn { step[0] };
-        auto distanceText { step.substr(1) };
-        auto distance { std::stoi(distanceText) };
+        auto const turn { step[0] };
+        auto const distanceText { step.substr(1) };
+        auto const distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
-        auto nextMove { getNextMove(direction) };
+        auto const [xChange, yChange] { getNextMove(direction) };
         for (int i { 0 }; i < distance; i++)
         {
-            auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;
         }

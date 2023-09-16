@@ -9,7 +9,7 @@
 class Year2016 {
     public:
         CompassDirection makeTurn(const CompassDirection direction, const char turn);
-        std::tuple<int, int> getNextMove(CompassDirection direction);
+        std::pair<int, int> getNextMove(CompassDirection direction);
         auto getNineKeyPad();
         auto getThirteenKeyPad();
         auto getCode(std::map<char, KeypadKey> keys, const std::string &input);
