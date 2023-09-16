@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <iterator>
 #include <numeric>
+#include <stdexcept>
+#include <string>
 
 #include "Year2015.hpp"
 #include "Util.hpp"
@@ -19,19 +21,22 @@ int Year2015::Day1Part1(const std::string &input)
 int Year2015::Day1Part2(const std::string& input)
 {
     auto floor { 0 };
-    for (auto i { 0 }; i < input.length(); i++) {
+    for (size_t i { 0 }; i < input.length(); i++) {
         auto step { input[i] };
         if (step == '(') {
-            floor++;
+            ++floor;
         }
         else if (step == ')') {
-            floor--;
+            --floor;
+        }
+        else {
+            throw std::logic_error("Invalid step: " + std::string(1, step));
         }
         if (floor < 0) {
             return i + 1;
         }
     }
-    return -1;
+    throw std::logic_error("Never entered the basement.");
 }
 
 int Year2015::getWrappingPaper(const std::string& dimensions) {
