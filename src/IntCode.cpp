@@ -18,7 +18,7 @@ void IntCode::verifyPosition(int position) {
             output << "There are no valid positions.";
         }
         else {
-            output << "Valid positions are 0 to " << memory.size() - 1;
+            output << "Valid positions are 0 to " << memory.size() - 1 << ".";
         }
         throw std::out_of_range(output.str());
     }
