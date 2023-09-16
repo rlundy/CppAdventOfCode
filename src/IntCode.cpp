@@ -2,11 +2,11 @@
 #include <stdexcept>
 
 #include "IntCode.hpp"
+#include "IntCodeOperation.hpp"
 #include "Util.hpp"
 
-IntCode::IntCode(std::string instructions)
+IntCode::IntCode(std::string instructions): originalInput { instructions }
 {
-    originalInput = instructions;
     reset();
 }
 
@@ -28,10 +28,11 @@ void IntCode::process()
 {
     auto currentPos { 0 };
     int inputPos1, inputPos2, outputPos;
-    int stopper { 100 };
+    int stopper { 1000 };
     while (true) {
-        switch (memory[currentPos]) {
-            case 1:
+        auto op { static_cast<IntCodeOperation>(memory[currentPos]) };
+        switch (op) {
+            case IntCodeOperation::Add:
                 inputPos1 = memory[currentPos + 1];
                 inputPos2 = memory[currentPos + 2];
                 outputPos = memory[currentPos + 3];
@@ -40,7 +41,7 @@ void IntCode::process()
                 verifyPosition(outputPos);
                 memory[outputPos] = memory[inputPos1] + memory[inputPos2];
                 break;
-            case 2:
+            case IntCodeOperation::Multiply:
                 inputPos1 = memory[currentPos + 1];
                 inputPos2 = memory[currentPos + 2];
                 outputPos = memory[currentPos + 3];
@@ -49,7 +50,7 @@ void IntCode::process()
                 verifyPosition(outputPos);
                 memory[outputPos] = memory[inputPos1] * memory[inputPos2];
                 break;
-            case 99:
+            case IntCodeOperation::End:
                 return;
         }
         currentPos += 4;
