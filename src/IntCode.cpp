@@ -89,5 +89,6 @@ void IntCode::reset()
 {
     auto numberTexts { split(originalInput, ",") };
     auto numbers { textToInt(numberTexts) };
+    memory.clear();
     memory.insert(memory.begin(), numbers.cbegin(), numbers.cend());
 }
