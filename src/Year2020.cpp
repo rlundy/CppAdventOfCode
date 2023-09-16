@@ -7,11 +7,11 @@
 int Year2020::Day1Part1(const std::string& input) {
     auto const numbers { inputToVector(input) };
     for (auto i { 0 }; i < numbers.size(); i++)
-    for (auto j { 1 }; j < numbers.size(); j++)
+    for (auto j { 0 }; j < numbers.size(); j++)
     {
         auto const first { numbers[i] };
         auto const second { numbers[j] };
-        if (first + second == 2020)
+        if (first < second && first + second == 2020)
             return first * second;
     }
     throw std::logic_error("Couldn't find two numbers that add to 2020.");
@@ -20,13 +20,13 @@ int Year2020::Day1Part1(const std::string& input) {
 int Year2020::Day1Part2(const std::string& input) {
     auto const numbers { inputToVector(input) };
     for (auto i { 0 }; i < numbers.size(); i++)
-    for (auto j { 1 }; j < numbers.size(); j++)
-    for (auto k { 2 }; k < numbers.size(); k++)
+    for (auto j { 0 }; j < numbers.size(); j++)
+    for (auto k { 0 }; k < numbers.size(); k++)
     {
         auto const first { numbers[i] };
         auto const second { numbers[j] };
         auto const third { numbers[k] };
-        if (first + second + third == 2020) {
+        if (first < second && second < third && first + second + third == 2020) {
             return first * second * third;
         }
     }
