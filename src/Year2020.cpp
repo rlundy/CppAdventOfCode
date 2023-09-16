@@ -1,35 +1,36 @@
 #include <algorithm>
+#include <stdexcept>
 
 #include "Year2020.hpp"
 #include "Util.hpp"
 
 int Year2020::Day1Part1(const std::string& input) {
-    auto numbers { inputToVector(input) };
+    auto const numbers { inputToVector(input) };
     for (auto i { 0 }; i < numbers.size(); i++)
     for (auto j { 1 }; j < numbers.size(); j++)
     {
-        auto first { numbers[i] };
-        auto second { numbers[j] };
+        auto const first { numbers[i] };
+        auto const second { numbers[j] };
         if (first + second == 2020)
             return first * second;
     }
-    return -1;
+    throw std::logic_error("Couldn't find two numbers that add to 2020.");
 }
 
 int Year2020::Day1Part2(const std::string& input) {
-    auto numbers { inputToVector(input) };
+    auto const numbers { inputToVector(input) };
     for (auto i { 0 }; i < numbers.size(); i++)
     for (auto j { 1 }; j < numbers.size(); j++)
     for (auto k { 2 }; k < numbers.size(); k++)
     {
-        auto first { numbers[i] };
-        auto second { numbers[j] };
-        auto third { numbers[k] };
+        auto const first { numbers[i] };
+        auto const second { numbers[j] };
+        auto const third { numbers[k] };
         if (first + second + third == 2020) {
             return first * second * third;
         }
     }
-    return -1;
+    throw std::logic_error("Couldn't find three numbers that add to 2020.");
 }
 
 bool Year2020::IsValid(const std::string& passwordFileLine) {
