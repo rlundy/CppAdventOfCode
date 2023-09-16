@@ -10,12 +10,11 @@
 class IntCode {
     private:
         std::unique_ptr<IntCodeMemory> memory;
-        void verifyPosition(int position);
     public:
         void process();
         void replace(int position, int value);
-        IntCode(std::string instructions);
-        int getPosition(int position);
-        std::string getState();
+        IntCode(const std::string& instructions);
+        int getPosition(int position) const;
+        std::string getState() const;
         void reboot();
 };

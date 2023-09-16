@@ -10,9 +10,9 @@ class IntCodeMemory {
         void verifyPosition(size_t position) const;
     public:
         IntCodeMemory(const std::string& instructions);
-        size_t size();
+        size_t size() const;
         void clear();
-        bool empty();
+        bool empty() const;
         void reboot();
         int get(size_t index) const;
         void set(size_t index, int value);

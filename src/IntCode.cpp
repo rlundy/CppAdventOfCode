@@ -6,23 +6,12 @@
 #include "IntCodeOperation.hpp"
 #include "Util.hpp"
 
-IntCode::IntCode(std::string instructions): memory { std::make_unique<IntCodeMemory>(instructions) }
+IntCode::IntCode(const std::string& instructions)
 {
-    std::cout << "Initial instructions:" << std::endl << instructions << std::endl;
-}
-
-void IntCode::verifyPosition(int position) {
-    if (position < 0 || position >= memory->size()) {
-        std::ostringstream output;
-        output << "Bad index.  ";
-        if (memory->empty()) {
-            output << "There are no valid positions.";
-        }
-        else {
-            output << "Valid positions are 0 to " << memory->size() - 1 << ".";
-        }
-        throw std::out_of_range(output.str());
+    if (instructions.empty()) {
+        throw std::invalid_argument("Can't create an IntCode computer with empty instructions.");
     }
+    memory = std::make_unique<IntCodeMemory>(instructions);
 }
 
 void IntCode::process()
@@ -59,12 +48,12 @@ void IntCode::replace(int position, int value) {
     memory->set(position, value);
 }
 
-int IntCode::getPosition(int position)
+int IntCode::getPosition(int position) const
 {
     return memory->get(position);
 }
 
-std::string IntCode::getState()
+std::string IntCode::getState() const
 {
     std::ostringstream output;
     for (auto i { 0 }; i < memory->size(); i++) {

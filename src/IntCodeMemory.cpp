@@ -1,11 +1,12 @@
 #include "IntCodeMemory.hpp"
 #include "Util.hpp"
 
-#include <iostream>
-#include <algorithm>
-
-IntCodeMemory::IntCodeMemory(const std::string &instructions): originalInstructions(instructions)
+IntCodeMemory::IntCodeMemory(const std::string &instructions)
 {
+    if (instructions.empty()) {
+        throw std::invalid_argument("Can't create an IntCodeMemory with empty instructions.");
+    }
+    originalInstructions = instructions;
     reboot();
 }
 
@@ -31,17 +32,12 @@ void IntCodeMemory::verifyPosition(size_t position) const {
     }
 }
 
-size_t IntCodeMemory::size()
+size_t IntCodeMemory::size() const
 {
     return memory.size();
 }
 
-void IntCodeMemory::clear()
-{
-    memory.clear();
-}
-
-bool IntCodeMemory::empty()
+bool IntCodeMemory::empty() const
 {
     return memory.empty();
 }
