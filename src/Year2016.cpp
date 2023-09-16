@@ -71,31 +71,30 @@ int Year2016::Day1Part1(const std::string& input)
 
 int Year2016::Day1Part2(const std::string& input)
 {
-    auto firstPosition { std::make_tuple(0, 0) };
+    auto firstPosition { std::make_pair(0, 0) };
     std::set<decltype(firstPosition)> positionsVisited { firstPosition };
 
-    auto steps { split(input, ", ") };
+    auto const steps { split(input, ", ") };
     auto x { 0 };
     auto y { 0 };
     auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto turn { step[0] };
-        auto distanceText { step.substr(1) };
-        auto distance { std::stoi(distanceText) };
+        auto const turn { step[0] };
+        auto const distanceText { step.substr(1) };
+        auto const distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
-        auto nextMove { getNextMove(direction) };
+        auto const nextMove { getNextMove(direction) };
         for (int i {0}; i < distance; i++) {
             auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;
             bool added;
-            std::tie(std::ignore, added) = positionsVisited.insert(std::make_tuple(x, y));
+            std::tie(std::ignore, added) = positionsVisited.insert(std::make_pair(x, y));
             if (!added)
                 return std::abs(x) + std::abs(y);
         }
     }
-
-    return 0;
+    throw std::logic_error("No repeatedly-visited position found.");
 }
 
 auto move(std::map<char, KeypadKey> keys, KeypadKey current, char direction) {
