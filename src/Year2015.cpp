@@ -49,7 +49,7 @@ std::tuple<int, int, int> parseDimensions(const std::string& dimensions) {
 }
 
 int Year2015::getWrappingPaper(const std::string& dimensions) {
-    auto [l, w, h] = parseDimensions(dimensions);
+    auto [l, w, h] { parseDimensions(dimensions) };
     auto const s1 { l * w };
     auto const s2 { w * h };
     auto const s3 { l * h };
@@ -59,7 +59,7 @@ int Year2015::getWrappingPaper(const std::string& dimensions) {
 
 int Year2015::getRibbon(const std::string& dimensions)
 {
-    auto [l, w, h] = parseDimensions(dimensions);
+    auto [l, w, h] { parseDimensions(dimensions) };
     auto const p1 { 2 * l + 2 * w };
     auto const p2 { 2 * l + 2 * h };
     auto const p3 { 2 * w + 2 * h };

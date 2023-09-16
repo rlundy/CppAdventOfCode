@@ -61,8 +61,8 @@ bool Year2020::IsValidPart2(const std::string& passwordFileLine) {
     auto firstPosition { std::stoi(range[0]) - 1 };
     auto secondPosition { std::stoi(range[1]) - 1 };
     // firstPosition-secondPosition letterToFind: password
-    auto inFirst = password[firstPosition] == letterToFind;
-    auto inSecond = password[secondPosition] == letterToFind;
+    auto inFirst { password[firstPosition] == letterToFind };
+    auto inSecond { password[secondPosition] == letterToFind };
     return (inFirst || inSecond) && !(inFirst && inSecond);
 }
 

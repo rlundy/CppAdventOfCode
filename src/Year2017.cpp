@@ -10,7 +10,7 @@
 
 int Year2017::Day1Part1(const std::string& input)
 {
-    const auto adjustedInput = input + input[0];
+    const auto adjustedInput { input + input[0] };
     auto sum { 0 };
     for (size_t i { 0 }; i < input.size(); i++) {
         auto const x { adjustedInput[i] };

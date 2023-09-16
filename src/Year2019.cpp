@@ -50,13 +50,13 @@ int Year2019::Day2Part1(const std::string &input)
 int Year2019::Day2Part2(const std::string &input)
 {
     IntCode ic { input };
-    for (auto a = 0; a < 100; a++)
-    for (auto b = 0; b < 100; b++) {
+    for (auto a { 0 }; a < 100; a++)
+    for (auto b { 0 }; b < 100; b++) {
         ic.reset();
         ic.replace(1, a);
         ic.replace(2, b);
         ic.process();
-        auto result = ic.getPosition(0);
+        auto result { ic.getPosition(0) };
         if (result == 19690720) {
             return 100 * a + b;
         }
