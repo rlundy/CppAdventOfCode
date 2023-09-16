@@ -11,9 +11,7 @@ int Year2017::Day1Part1(const std::string& input)
 {
     std::vector<char> numbers;
     for (auto n : input) {
-        if (std::isdigit(n)) {
-            numbers.push_back(n);
-        }
+        numbers.push_back(n);
     }
     numbers.push_back(numbers[0]);
     auto sum { 0 };
@@ -34,14 +32,10 @@ int Year2017::Day1Part2(const std::string& input)
     auto halfway { input.length() / 2 };
     std::vector<char> numbers;
     for (auto n : input) {
-        if (std::isdigit(n)) {
-            numbers.push_back(n);
-        }
+        numbers.push_back(n);
     }
     for (auto n : input.substr(0, halfway)) {
-        if (std::isdigit(n)) {
-            numbers.push_back(n);
-        }
+        numbers.push_back(n);
     }
     auto sum { 0 };
     for (size_t i { 0 }; i < input.length(); i++) {
