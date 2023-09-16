@@ -28,6 +28,9 @@ std::string readFileContents(const std::string& filePath) {
 
 std::vector<std::string> split(const std::string& original, const std::string& delimiter) {
     std::vector<std::string> parts;
+    if (original.empty()) {
+        return parts;
+    }
     size_t start { 0 }, end { 0 };
 
     while ((end = original.find(delimiter, start)) != std::string::npos) {
