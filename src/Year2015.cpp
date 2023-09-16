@@ -3,11 +3,12 @@
 #include <numeric>
 #include <stdexcept>
 #include <string>
+#include <sstream>
 
 #include "Year2015.hpp"
 #include "Util.hpp"
 
-int Year2015::Day1Part1(const std::string &input)
+int Year2015::Day1Part1(const std::string& input)
 {
     return std::accumulate(
         input.cbegin(),
@@ -38,33 +39,38 @@ int Year2015::Day1Part2(const std::string& input)
     throw std::logic_error("Never entered the basement.");
 }
 
+std::tuple<int, int, int> parseDimensions(const std::string& dimensions) {
+    auto const dimsText { split(dimensions, "x") };
+    auto const dims { textToInt(dimsText) };
+    if (dims.size() != 3) {
+        throw std::length_error((std::ostringstream() << "Wrong number of box dimensions: " << dims.size()).str());
+    }
+    return std::make_tuple(dims[0], dims[1], dims[2]);
+}
+
 int Year2015::getWrappingPaper(const std::string& dimensions) {
-    auto dimsText { split(dimensions, "x") };
-    auto dims { textToInt(dimsText) };
-    auto l { dims[0] }, w { dims[1] }, h { dims[2] };
-    auto s1 { l * w };
-    auto s2 { w * h };
-    auto s3 { l * h };
-    auto minSide = std::min({ s1, s2, s3 });
+    auto [l, w, h] = parseDimensions(dimensions);
+    auto const s1 { l * w };
+    auto const s2 { w * h };
+    auto const s3 { l * h };
+    auto const minSide { std::min({ s1, s2, s3 }) };
     return s1 * 2 + s2 * 2 + s3 * 2 + minSide;
 }
 
-int Year2015::getRibbon(const std::string &dimensions)
+int Year2015::getRibbon(const std::string& dimensions)
 {
-    auto dimsText { split(dimensions, "x") };
-    auto dims { textToInt(dimsText) };
-    auto l { dims[0] }, w { dims[1] }, h { dims[2] };
-    auto p1 = 2 * l + 2 * w;
-    auto p2 = 2 * l + 2 * h;
-    auto p3 = 2 * w + 2 * h;
-    auto smallest = std::min({ p1, p2, p3 });
-    auto bow = l * w * h;
+    auto [l, w, h] = parseDimensions(dimensions);
+    auto const p1 { 2 * l + 2 * w };
+    auto const p2 { 2 * l + 2 * h };
+    auto const p3 { 2 * w + 2 * h };
+    auto const smallest { std::min({ p1, p2, p3 }) };
+    auto const bow { l * w * h };
     return smallest + bow;
 }
 
 int Year2015::Day2Part1(const std::string& input)
 {
-    auto dimensions { split(input, "\n") };
+    auto const dimensions { split(input, "\n") };
     std::vector<int> paper;
     std::transform(
         dimensions.cbegin(),
@@ -75,10 +81,9 @@ int Year2015::Day2Part1(const std::string& input)
     return sum(paper);
 }
 
-// The ribbon required to wrap a present is the shortest distance around its sides, or the smallest perimeter of any one face. Each present also requires a bow made out of ribbon as well; the feet of ribbon required for the perfect bow is equal to the cubic feet of volume of the present. Don't ask how they tie the bow, though; they'll never tell.
 int Year2015::Day2Part2(const std::string& input)
 {
-    auto dimensions = split(input, "\n");
+    auto const dimensions { split(input, "\n") };
     std::vector<int> ribbon;
     std::transform(
         dimensions.cbegin(),
