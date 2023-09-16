@@ -36,8 +36,6 @@ int Year2018::Day1Part2(const std::string& input)
         }
         current++;
     }
-
-    return -1;
 }
 
 auto Year2018::group(std::string letters) {
