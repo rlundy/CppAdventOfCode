@@ -11,7 +11,6 @@ class IntCodeMemory {
     public:
         IntCodeMemory(const std::string& instructions);
         size_t size() const;
-        void clear();
         bool empty() const;
         void reboot();
         int get(size_t index) const;
