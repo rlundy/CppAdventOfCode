@@ -49,16 +49,20 @@ int Year2019::Day2Part1(const std::string &input)
 
 int Year2019::Day2Part2(const std::string &input)
 {
-    IntCode ic { input };
+    std::vector<std::pair<int, int>> runValues;
     for (auto a { 0 }; a < 100; a++)
     for (auto b { 0 }; b < 100; b++) {
+        runValues.push_back(std::make_pair(a, b));
+    }
+
+    IntCode ic { input };
+    for (auto v : runValues) {
         ic.reboot();
-        ic.replace(1, a);
-        ic.replace(2, b);
+        ic.replace(1, v.first);
+        ic.replace(2, v.second);
         ic.process();
-        auto result { ic.getPosition(0) };
-        if (result == 19690720) {
-            return 100 * a + b;
+        if (ic.getPosition(0) == 19690720) {
+            return 100 * v.first + v.second;
         }
     }
     return -1;
