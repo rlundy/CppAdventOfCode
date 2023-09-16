@@ -1,15 +1,19 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <numeric>
 
 #include "Year2015.hpp"
 #include "Util.hpp"
 
 int Year2015::Day1Part1(const std::string &input)
 {
-    auto up { std::count(input.cbegin(), input.cend(), '(') };
-    auto down { std::count(input.cbegin(), input.cend(), ')') };
-    return static_cast<int>(up - down);
+    return std::accumulate(
+        input.cbegin(),
+        input.cend(),
+        0,
+        [](int acc, char ch){ if (ch == '(') return acc + 1; else if (ch == ')') return acc - 1; else return acc; }
+    );
 }
 
 int Year2015::Day1Part2(const std::string& input)
