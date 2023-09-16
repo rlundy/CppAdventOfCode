@@ -3,11 +3,13 @@
 #include <string>
 #include <vector>
 #include <initializer_list>
+#include <memory>
+
+#include "IntCodeMemory.hpp"
 
 class IntCode {
     private:
-        std::vector<int> memory;
-        std::string originalInput;
+        std::unique_ptr<IntCodeMemory> memory;
         void verifyPosition(int position);
     public:
         void process();

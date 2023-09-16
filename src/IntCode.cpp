@@ -1,24 +1,25 @@
 #include <sstream>
 #include <stdexcept>
+#include <iostream>
 
 #include "IntCode.hpp"
 #include "IntCodeOperation.hpp"
 #include "Util.hpp"
 
-IntCode::IntCode(std::string instructions): originalInput { instructions }
+IntCode::IntCode(std::string instructions): memory { std::make_unique<IntCodeMemory>(instructions) }
 {
-    reset();
+    std::cout << "Initial instructions:" << std::endl << instructions << std::endl;
 }
 
 void IntCode::verifyPosition(int position) {
-    if (position < 0 || position >= memory.size()) {
+    if (position < 0 || position >= memory->size()) {
         std::ostringstream output;
         output << "Bad index.  ";
-        if (memory.empty()) {
+        if (memory->empty()) {
             output << "There are no valid positions.";
         }
         else {
-            output << "Valid positions are 0 to " << memory.size() - 1 << ".";
+            output << "Valid positions are 0 to " << memory->size() - 1 << ".";
         }
         throw std::out_of_range(output.str());
     }
@@ -30,25 +31,25 @@ void IntCode::process()
     int inputPos1, inputPos2, outputPos;
     int stopper { 1000 };
     while (true) {
-        auto op { static_cast<IntCodeOperation>(memory[currentPos]) };
+        auto op { static_cast<IntCodeOperation>(memory->get(currentPos)) };
         switch (op) {
             case IntCodeOperation::Add:
-                inputPos1 = memory[currentPos + 1];
-                inputPos2 = memory[currentPos + 2];
-                outputPos = memory[currentPos + 3];
+                inputPos1 = memory->get(currentPos + 1);
+                inputPos2 = memory->get(currentPos + 2);
+                outputPos = memory->get(currentPos + 3);
                 verifyPosition(inputPos1);
                 verifyPosition(inputPos2);
                 verifyPosition(outputPos);
-                memory[outputPos] = memory[inputPos1] + memory[inputPos2];
+                memory->set(outputPos, memory->get(inputPos1) + memory->get(inputPos2));
                 break;
             case IntCodeOperation::Multiply:
-                inputPos1 = memory[currentPos + 1];
-                inputPos2 = memory[currentPos + 2];
-                outputPos = memory[currentPos + 3];
+                inputPos1 = memory->get(currentPos + 1);
+                inputPos2 = memory->get(currentPos + 2);
+                outputPos = memory->get(currentPos + 3);
                 verifyPosition(inputPos1);
                 verifyPosition(inputPos2);
                 verifyPosition(outputPos);
-                memory[outputPos] = memory[inputPos1] * memory[inputPos2];
+                memory->set(outputPos, memory->get(inputPos1) * memory->get(inputPos2));
                 break;
             case IntCodeOperation::End:
                 return;
@@ -62,24 +63,23 @@ void IntCode::process()
 
 void IntCode::replace(int position, int value) {
     verifyPosition(position);
-    memory[position] = value;
+    memory->set(position, value);
 }
 
 int IntCode::getPosition(int position)
 {
-    return memory.at(position);
+    return memory->get(position);
 }
 
 std::string IntCode::getState()
 {
     std::ostringstream output;
-    auto isEmpty { true };
-    for (auto i { 0 }; i < memory.size(); i++) {
+    for (auto i { 0 }; i < memory->size(); i++) {
         if (i == 0) {
-            output << memory[i];
+            output << memory->get(i);
         }
         else {
-            output << "," << memory[i];
+            output << "," << memory->get(i);
         }
     }
     return output.str();
@@ -87,8 +87,5 @@ std::string IntCode::getState()
 
 void IntCode::reset()
 {
-    auto numberTexts { split(originalInput, ",") };
-    auto numbers { textToInt(numberTexts) };
-    memory.clear();
-    memory.insert(memory.begin(), numbers.cbegin(), numbers.cend());
+    memory.reset();
 }

@@ -49,6 +49,9 @@ std::vector<int> inputToVector(const std::string& input) {
 
 std::vector<int> textToInt(std::vector<std::string> texts) {
     std::vector<int> numbers;
+    if (texts.empty()) {
+        return numbers;
+    }
     std::transform(
         texts.cbegin(),
         texts.cend(),
