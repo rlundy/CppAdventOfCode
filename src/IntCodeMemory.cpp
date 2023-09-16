@@ -12,9 +12,6 @@ IntCodeMemory::IntCodeMemory(const std::string &instructions): originalInstructi
 void IntCodeMemory::reboot()
 {
     auto numberTexts { split(originalInstructions, ",") };
-    if (numberTexts.empty()) {
-        return;
-    }
     auto numbers { textToInt(numberTexts) };
     memory.clear();
     memory.insert(memory.begin(), numbers.cbegin(), numbers.cend());
