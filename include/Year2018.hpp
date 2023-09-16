@@ -10,8 +10,6 @@ class Year2018 {
         auto hasCount(const letterGroup group, const int expectedRepeatedLetterCount);
         auto hasOneThreeLetterSet(const letterGroup group);
         auto hasOneTwoLetterSet(const letterGroup group);
-        auto findDifferingPositions(const std::string& code, const std::string& otherCode);
-        auto removePosition(const std::string& code, const int position);
     public:
         int Day1Part1(const std::string& input);
         int Day1Part2(const std::string& input);

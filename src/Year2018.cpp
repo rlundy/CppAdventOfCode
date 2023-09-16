@@ -7,6 +7,7 @@
 #include <set>
 #include <unordered_map>
 #include <iostream>
+#include <unordered_set>
 
 #include "Year2018.hpp"
 #include "Util.hpp"
@@ -76,37 +77,21 @@ int Year2018::Day2Part1(const std::string& input)
     return hasTwoCount * hasThreeCount;
 }
 
-auto Year2018::findDifferingPositions(const std::string& code, const std::string& otherCode) {
-    std::vector<int> differingPositions;
-    for (size_t i = 0; i < code.size(); i++)
-    {
-        if (code[i] != otherCode[i]) {
-            differingPositions.push_back(i);
-        }
-    }
-    return differingPositions;
-}
-
-auto Year2018::removePosition(const std::string& code, const int position) {
-    if (position == 0)
-        return code.substr(1);
-    if (position == code.size() - 1)
-        return code.substr(0, code.size() - 2);
-    return code.substr(0, position) + code.substr(position + 1);
-}
-
 std::string Year2018::Day2Part2(const std::string& input)
 {
-    auto const codes = split(input, "\n");
+    auto const codes { split(input, "\n") };
+    std::unordered_set<std::string> codesWithOneLetterBlankedOut;
     for (auto code : codes) {
-        for (auto otherCode : codes) {
-            if (code > otherCode) {
-                auto const differingPositions { findDifferingPositions(code, otherCode) };
-                if (differingPositions.size() == 1) {
-                    return removePosition(code, differingPositions.at(0));
-                }
+        for (size_t i { 0 }; i < code.length(); i++) {
+            auto copy { code };
+            copy.replace(i, 1, "_");
+            auto [it, added] = codesWithOneLetterBlankedOut.insert(copy);
+            if (!added) {
+                std::cout << "Original code: " << code << std::endl;
+                copy.replace(i, 1, "");
+                return copy;
             }
         }
     }
-    return "-1";
+    throw std::logic_error("Couldn't find two codes that differ by only one letter.");
 }
