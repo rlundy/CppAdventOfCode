@@ -88,8 +88,7 @@ int Year2016::Day1Part2(const std::string& input)
             auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;
-            bool added;
-            std::tie(std::ignore, added) = positionsVisited.insert(std::make_pair(x, y));
+            auto [it, added] { positionsVisited.insert(std::make_pair(x, y)) };
             if (!added)
                 return std::abs(x) + std::abs(y);
         }
