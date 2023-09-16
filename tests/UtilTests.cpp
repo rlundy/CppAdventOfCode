@@ -17,6 +17,16 @@ TEST_CASE("Contains") {
 }
 
 TEST_CASE("Trim") {
-    std::string original { " abc def " };
-    CHECK(trim(original) == "abc def" );
+    SECTION("Happy path") {
+        std::string original { " abc def " };
+        CHECK(trim(original) == std::string { "abc def" });
+    }
+    SECTION("Empty string") {
+        std::string original { "" };
+        CHECK(trim(original) == "");
+    }
+    SECTION("Only spaces") {
+        std::string original { "     " };
+        CHECK(trim(original) == "");
+    }
 }

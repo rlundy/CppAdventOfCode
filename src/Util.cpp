@@ -68,8 +68,11 @@ int maxInt(const std::vector<int> numbers)
     return *std::max_element(numbers.cbegin(), numbers.cend());
 }
 
-std::string trim(const std::string text)
+std::string trim(const std::string& text)
 {
+    if (text.empty()) {
+        return text;
+    }
     auto startAt { 0 };
     auto endAt { text.size() - 1 };
     while (std::isspace(text[startAt])) {
