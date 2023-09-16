@@ -26,6 +26,24 @@ TEST_CASE("Year 2018 Day 2 Part 1") {
     CHECK(test("abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab") == 12);
 }
 
+TEST_CASE("How does erase work?") {
+    SECTION("Erase first char") {
+        std::string text { "abcdef" };
+        text.erase(0, 1);
+        CHECK(text == "bcdef");
+    }
+    SECTION("Erase middle char") {
+        std::string text { "abcdef" };
+        text.erase(2, 1);
+        CHECK(text == "abdef");
+    }
+    SECTION("Erase last char") {
+        std::string text { "abcdef" };
+        text.erase(5, 1);
+        CHECK(text == "abcde");
+    }
+}
+
 TEST_CASE("Year 2018 Day 2 Part 2") {
     Year2018 y;
     auto test { std::bind(&Year2018::Day2Part2, &y, std::placeholders::_1) };
