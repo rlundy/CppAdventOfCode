@@ -62,10 +62,12 @@ bool IntCodeMemory::empty()
 
 int IntCodeMemory::get(size_t index) const
 {
+    verifyPosition(index);
     return memory[index];
 }
 
 void IntCodeMemory::set(size_t index, int value)
 {
+    verifyPosition(index);
     memory[index] = value;
 }
