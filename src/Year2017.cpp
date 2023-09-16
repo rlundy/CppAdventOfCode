@@ -10,9 +10,7 @@
 int Year2017::Day1Part1(const std::string& input)
 {
     std::vector<char> numbers;
-    for (auto n : input) {
-        numbers.push_back(n);
-    }
+    std::transform(input.cbegin(), input.cend(), std::back_inserter(numbers), [](char ch){ return ch; });
     numbers.push_back(numbers[0]);
     auto sum { 0 };
     for (size_t i { 0 }; i < numbers.size() - 1; i++)
@@ -29,11 +27,9 @@ int Year2017::Day1Part1(const std::string& input)
 
 int Year2017::Day1Part2(const std::string& input)
 {
-    auto halfway { input.length() / 2 };
     std::vector<char> numbers;
-    for (auto n : input) {
-        numbers.push_back(n);
-    }
+    std::transform(input.cbegin(), input.cend(), std::back_inserter(numbers), [](char ch){ return ch; });
+    auto halfway { input.length() / 2 };
     for (auto n : input.substr(0, halfway)) {
         numbers.push_back(n);
     }
