@@ -1,2 +1,3 @@
 @echo off
 bazel build //...
+exit /b %ERRORLEVEL%
