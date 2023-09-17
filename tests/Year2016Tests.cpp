@@ -37,3 +37,15 @@ TEST_CASE("Year 2016 Day 2 Part 2") {
     auto test { std::bind(&Year2016::Day2Part2, &y, std::placeholders::_1) };
     CHECK(test("ULL\nRRDDD\nLURDL\nUUUUD") == "5DB3");
 }
+
+TEST_CASE("Year 2016 Day 3 Part 1") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day3Part1, &y, std::placeholders::_1) };
+    CHECK(test(" 5 10 25 \n 10 11 12 \n 1 1 13 \n 3 4 5 ") == 2);
+}
+
+TEST_CASE("Year 2016 Day 3 Part 2") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day3Part2, &y, std::placeholders::_1) };
+    CHECK(test(" 5 10 1 \n 10 11 1 \n 25 12 13 ") == 1);
+}

@@ -170,3 +170,13 @@ std::string Year2016::Day2Part2(const std::string &input)
 {
     return getCode(getThirteenKeyPad(), input);
 }
+
+int Year2016::Day3Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2016::Day3Part2(const std::string &input)
+{
+    return -1;
+}
