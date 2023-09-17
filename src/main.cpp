@@ -98,4 +98,8 @@ int main() {
     auto input2022_1 { getPuzzleInput(2022, 1) };
     t.time([&](){ showResult(2022, 1, 1, y2022.Day1Part1(input2022_1)); });
     t.time([&](){ showResult(2022, 1, 2, y2022.Day1Part2(input2022_1)); });
+
+    auto input2022_2 { getPuzzleInput(2022, 2) };
+    t.time([&](){ showResult(2022, 2, 1, y2022.Day2Part1(input2022_2)); });
+    t.time([&](){ showResult(2022, 2, 2, y2022.Day2Part2(input2022_2)); });
 }
