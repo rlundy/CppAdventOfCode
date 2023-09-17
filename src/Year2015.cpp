@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include <unordered_set>
 
 #include "Year2015.hpp"
 #include "Util.hpp"
@@ -92,4 +93,64 @@ int Year2015::Day2Part2(const std::string& input)
         [this](const std::string& dim) { return this->getRibbon(dim); }
     );
     return sum(ribbon);
+}
+
+std::string Year2015::toText(int x, int y) {
+    return (std::ostringstream() << x << "," << y).str();
+}
+
+int Year2015::Day3Part1(const std::string &input)
+{
+    std::unordered_set<std::string> houses;
+    auto x { 0 }, y { 0 };
+    houses.insert(toText(x, y));
+    for (auto pos : input) {
+        switch (pos) {
+            case 'v':
+                y++;
+                break;
+            case '^':
+                y--;
+                break;
+            case '<':
+                x--;
+                break;
+            case '>':
+                x++;
+                break;
+        }
+        houses.insert(toText(x, y));
+    }
+    return houses.size();
+}
+
+int Year2015::Day3Part2(const std::string &input)
+{
+    std::unordered_set<std::string> houses;
+    auto x { 0 }, y { 0 }, rx { 0 }, ry { 0 };
+    auto isRobo { false };
+    houses.insert(toText(x, y));
+    for (auto pos : input) {
+        switch (pos) {
+            case 'v':
+                if (isRobo) ry++; else y++;
+                break;
+            case '^':
+                if (isRobo) ry--; else y--;
+                break;
+            case '<':
+                if (isRobo) rx--; else x--;
+                break;
+            case '>':
+                if (isRobo) rx++; else x++;
+                break;
+        }
+        if (isRobo) {
+            houses.insert(toText(rx, ry));
+        } else {
+            houses.insert(toText(x, y));
+        }
+        isRobo = !isRobo;
+    }
+    return houses.size();
 }

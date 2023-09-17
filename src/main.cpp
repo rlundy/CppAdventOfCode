@@ -26,6 +26,10 @@ int main() {
     t.time([&](){ showResult(2015, 2, 1, y2015.Day2Part1(input2015_2)); });
     t.time([&](){ showResult(2015, 2, 2, y2015.Day2Part2(input2015_2)); });
 
+    auto input2015_3 { getPuzzleInput(2015, 3) };
+    t.time([&](){ showResult(2015, 3, 1, y2015.Day3Part1(input2015_3)); });
+    t.time([&](){ showResult(2015, 3, 2, y2015.Day3Part2(input2015_3)); });
+
     std::cout << std::endl;
 
     Year2016 y2016;
