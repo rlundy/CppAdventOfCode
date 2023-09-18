@@ -26,6 +26,27 @@ TEST_CASE("Split") {
     }
 }
 
+TEST_CASE("Split at white space") {
+    SECTION("Lots of spaces") {
+        std::string original { "  abc \n def\n \nghi\n\njkl  mno  " };
+        auto parts { splitAtWhiteSpace(original) };
+        CHECK(parts.at(0) == "abc");
+        CHECK(parts.at(1) == "def");
+        CHECK(parts.at(2) == "ghi");
+        CHECK(parts.at(3) == "jkl");
+        CHECK(parts.at(4) == "mno");
+    }
+    SECTION("No white space at start, end") {
+        std::string original { "abc \n def\n \nghi\n\njkl  mno" };
+        auto parts { splitAtWhiteSpace(original) };
+        CHECK(parts.at(0) == "abc");
+        CHECK(parts.at(1) == "def");
+        CHECK(parts.at(2) == "ghi");
+        CHECK(parts.at(3) == "jkl");
+        CHECK(parts.at(4) == "mno");
+    }
+}
+
 TEST_CASE("Contains") {
     CHECK(contains("ABCdefGHI", "def"));
     CHECK_FALSE(contains("ABCdefGHI", "DEF"));

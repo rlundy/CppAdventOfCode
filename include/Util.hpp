@@ -10,6 +10,8 @@ std::string readFileContents(const std::string &filePath);
 
 std::vector<std::string> split(const std::string& original, const std::string& delimiter);
 
+std::vector<std::string> splitAtWhiteSpace(const std::string& original);
+
 bool contains(const std::string& text, const std::string& textToFind);
 
 std::vector<int> inputToVector(const std::string& input);
