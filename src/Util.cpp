@@ -26,27 +26,12 @@ std::string readFileContents(const std::string& filePath) {
     return buffer.str();
 }
 
-std::vector<std::string> splitAtWhiteSpace(const std::string& original) {
-    std::vector<std::string> parts;
-    std::ostringstream s;
-    auto addAndReset = [](std::ostringstream& s, std::vector<std::string>& parts) {
-        auto text = s.str();
-        if (!text.empty()) {
-            parts.push_back(text);
-            s.str(std::string());
-        }
-    };
-    for (size_t i = 0; i < original.length(); ++i) {
-        auto ch = original[i];
-        if (!std::isspace(ch)) {
-            s << ch;
-        }
-        else {
-            addAndReset(s, parts);
-        }
-    }
-    addAndReset(s, parts);
-    return parts;
+std::vector<int> readInts(const std::string& original) {
+    std::istringstream originalStream { original };
+    std::istream_iterator<int> start { originalStream };
+    std::istream_iterator<int> end;
+    std::vector<int> ints { start, end };
+    return ints;
 }
 
 std::vector<std::string> split(const std::string& original, const std::string& delimiter) {
