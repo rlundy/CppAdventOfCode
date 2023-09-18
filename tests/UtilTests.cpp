@@ -16,6 +16,14 @@ TEST_CASE("Split") {
         auto parts { split(original, "abc") };
         CHECK(parts.size() == 0);
     }
+    SECTION("With empty sections") {
+        std::string original { "abc\ndef\n\nghi\n\n\njkl\n\n" };
+        auto parts { split(original, "\n") };
+        CHECK(parts.at(0) == "abc");
+        CHECK(parts.at(1) == "def");
+        CHECK(parts.at(2) == "ghi");
+        CHECK(parts.at(3) == "jkl");
+    }
 }
 
 TEST_CASE("Contains") {
