@@ -32,12 +32,19 @@ std::vector<std::string> split(const std::string& original, const std::string& d
         return parts;
     }
     size_t start { 0 }, end { 0 };
+    auto delimiterLength { delimiter.length() };
+
+    auto add = [&parts](const std::string& part){
+        if (!part.empty()) {
+            parts.push_back(part);
+        }
+    };
 
     while ((end = original.find(delimiter, start)) != std::string::npos) {
-        parts.push_back(original.substr(start, end - start));
-        start = end + delimiter.length();
+        add(original.substr(start, end - start));
+        start = end + delimiterLength;
     }
-    parts.push_back(original.substr(start));
+    add(original.substr(start));
     return parts;
 }
 
