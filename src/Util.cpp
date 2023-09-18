@@ -29,24 +29,23 @@ std::string readFileContents(const std::string& filePath) {
 std::vector<std::string> splitAtWhiteSpace(const std::string& original) {
     std::vector<std::string> parts;
     std::ostringstream s;
+    auto addAndReset = [](std::ostringstream& s, std::vector<std::string>& parts) {
+        auto text = s.str();
+        if (!text.empty()) {
+            parts.push_back(text);
+            s.str(std::string());
+        }
+    };
     for (size_t i = 0; i < original.length(); ++i) {
         auto ch = original[i];
         if (!std::isspace(ch)) {
             s << ch;
         }
         else {
-            auto text = s.str();
-            if (!text.empty()) {
-                parts.push_back(text);
-                s.str(std::string());
-            }
+            addAndReset(s, parts);
         }
     }
-    auto text = s.str();
-    if (!text.empty()) {
-        parts.push_back(text);
-        s.str(std::string());
-    }
+    addAndReset(s, parts);
     return parts;
 }
 
