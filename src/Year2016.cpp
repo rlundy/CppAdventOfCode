@@ -172,6 +172,11 @@ std::string Year2016::Day2Part2(const std::string &input)
     return getCode(getThirteenKeyPad(), input);
 }
 
+bool Year2016::isTriangle(std::vector<int> sides) {
+    std::sort(sides.begin(), sides.end());
+    return sides[0] + sides[1] > sides[2];
+}
+
 int Year2016::Day3Part1(const std::string &input)
 {
     auto triangleCount { 0 };
@@ -180,15 +185,31 @@ int Year2016::Day3Part1(const std::string &input)
     {
         std::vector<int> sides { ints[i], ints[i + 1], ints[i + 2] };
         std::sort(sides.begin(), sides.end());
-        if (sides[0] + sides[1] > sides[2]) {
+        if (isTriangle(sides)) {
             ++triangleCount;
         }
     }
-
     return triangleCount;
 }
 
 int Year2016::Day3Part2(const std::string &input)
 {
-    return -1;
+    auto triangleCount { 0 };
+    auto ints = readInts(input);
+    for (size_t i = 0; i < ints.size(); i+=9)
+    {
+        std::vector<int> t1 { ints[i], ints[i + 3], ints[i + 6] };
+        std::vector<int> t2 { ints[i + 1], ints[i + 4], ints[i + 7] };
+        std::vector<int> t3 { ints[i + 2], ints[i + 5], ints[i + 8] };
+        if (isTriangle(t1)) {
+            ++triangleCount;
+        }
+        if (isTriangle(t2)) {
+            ++triangleCount;
+        }
+        if (isTriangle(t3)) {
+            ++triangleCount;
+        }
+    }
+    return triangleCount;
 }
