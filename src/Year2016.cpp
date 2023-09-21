@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <utility>
+#include <algorithm>
 
 #include "Year2016.hpp"
 #include "Util.hpp"
@@ -173,7 +174,18 @@ std::string Year2016::Day2Part2(const std::string &input)
 
 int Year2016::Day3Part1(const std::string &input)
 {
-    return -1;
+    auto triangleCount { 0 };
+    auto ints = readInts(input);
+    for (size_t i = 0; i < ints.size(); i+=3)
+    {
+        std::vector<int> sides { ints[i], ints[i + 1], ints[i + 2] };
+        std::sort(sides.begin(), sides.end());
+        if (sides[0] + sides[1] > sides[2]) {
+            ++triangleCount;
+        }
+    }
+
+    return triangleCount;
 }
 
 int Year2016::Day3Part2(const std::string &input)
