@@ -9,7 +9,7 @@
 
 std::vector<int> toCalories(const std::string& input) {
     std::vector<int> calories;
-    auto calorieTexts { split(input, "\n") };
+    auto calorieTexts { split(input, "\n", true) };
     std::for_each(calorieTexts.begin(), calorieTexts.end(), [](std::string& calorieText) { if (calorieText.empty()) { calorieText = "0"; } });
     std::transform(calorieTexts.cbegin(), calorieTexts.cend(), std::back_inserter(calories), [](const std::string& calorieText){ return std::stoi(calorieText); });
     return calories;
