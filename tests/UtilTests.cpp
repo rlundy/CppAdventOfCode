@@ -24,6 +24,15 @@ TEST_CASE("Split") {
         CHECK(parts.at(2) == "ghi");
         CHECK(parts.at(3) == "jkl");
     }
+    SECTION("Keep empty sections") {
+        std::string original { "abc\ndef\n\nghi\n\n\njkl\n\n" };
+        auto parts { split(original, "\n", true) };
+        CHECK(parts.at(0) == "abc");
+        CHECK(parts.at(1) == "def");
+        CHECK(parts.at(3) == "ghi");
+        CHECK(parts.at(6) == "jkl");
+        CHECK(parts.at(8) == "");
+    }
 }
 
 TEST_CASE("Read ints") {

@@ -34,7 +34,7 @@ std::vector<int> readInts(const std::string& original) {
     return ints;
 }
 
-std::vector<std::string> split(const std::string& original, const std::string& delimiter) {
+std::vector<std::string> split(const std::string& original, const std::string& delimiter, const bool keepEmptyParts) {
     std::vector<std::string> parts;
     if (original.empty()) {
         return parts;
@@ -42,8 +42,8 @@ std::vector<std::string> split(const std::string& original, const std::string& d
     size_t start { 0 }, end { 0 };
     auto delimiterLength { delimiter.length() };
 
-    auto add = [&parts](const std::string& part){
-        if (!part.empty()) {
+    auto add = [&](const std::string& part){
+        if (keepEmptyParts || !part.empty()) {
             parts.push_back(part);
         }
     };
