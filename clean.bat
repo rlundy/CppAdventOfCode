@@ -1,3 +1,3 @@
 @echo off
-bazel clean
+bazel clean --expunge
 exit /b %ERRORLEVEL%
