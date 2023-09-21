@@ -6,8 +6,8 @@
 
 int Year2020::Day1Part1(const std::string& input) {
     auto const numbers { inputToVector(input) };
-    for (auto i { 0 }; i < numbers.size(); i++)
-    for (auto j { 0 }; j < numbers.size(); j++)
+    for (auto i { 0 }; i < numbers.size(); ++i)
+    for (auto j { 0 }; j < numbers.size(); ++j)
     {
         auto const first { numbers[i] };
         auto const second { numbers[j] };
@@ -19,9 +19,9 @@ int Year2020::Day1Part1(const std::string& input) {
 
 int Year2020::Day1Part2(const std::string& input) {
     auto const numbers { inputToVector(input) };
-    for (auto i { 0 }; i < numbers.size(); i++)
-    for (auto j { 0 }; j < numbers.size(); j++)
-    for (auto k { 0 }; k < numbers.size(); k++)
+    for (auto i { 0 }; i < numbers.size(); ++i)
+    for (auto j { 0 }; j < numbers.size(); ++j)
+    for (auto k { 0 }; k < numbers.size(); ++k)
     {
         auto const first { numbers[i] };
         auto const second { numbers[j] };

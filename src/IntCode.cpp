@@ -38,7 +38,7 @@ void IntCode::process()
                 return;
         }
         currentPos += 4;
-        stopper--;
+        --stopper;
         if (stopper == 0)
             return;
     }
@@ -56,7 +56,7 @@ int IntCode::getPosition(int position) const
 std::string IntCode::getState() const
 {
     std::ostringstream output;
-    for (auto i { 0 }; i < memory->size(); i++) {
+    for (auto i { 0 }; i < memory->size(); ++i) {
         if (i == 0) {
             output << memory->get(i);
         }

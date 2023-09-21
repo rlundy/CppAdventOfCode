@@ -22,7 +22,7 @@ int Year2015::Day1Part1(const std::string& input)
 int Year2015::Day1Part2(const std::string& input)
 {
     auto floor { 0 };
-    for (size_t i { 0 }; i < input.length(); i++) {
+    for (size_t i { 0 }; i < input.length(); ++i) {
         auto step { input[i] };
         if (step == '(') {
             ++floor;
@@ -107,16 +107,16 @@ int Year2015::Day3Part1(const std::string &input)
     for (auto pos : input) {
         switch (pos) {
             case 'v':
-                y++;
+                ++y;
                 break;
             case '^':
-                y--;
+                --y;
                 break;
             case '<':
-                x--;
+                --x;
                 break;
             case '>':
-                x++;
+                ++x;
                 break;
         }
         houses.insert(toText(x, y));
@@ -133,16 +133,16 @@ int Year2015::Day3Part2(const std::string &input)
     for (auto pos : input) {
         switch (pos) {
             case 'v':
-                if (isRobo) ry++; else y++;
+                if (isRobo) ++ry; else ++y;
                 break;
             case '^':
-                if (isRobo) ry--; else y--;
+                if (isRobo) --ry; else --y;
                 break;
             case '<':
-                if (isRobo) rx--; else x--;
+                if (isRobo) --rx; else --x;
                 break;
             case '>':
-                if (isRobo) rx++; else x++;
+                if (isRobo) ++rx; else ++x;
                 break;
         }
         if (isRobo) {

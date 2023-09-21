@@ -12,7 +12,7 @@ int Year2017::Day1Part1(const std::string& input)
 {
     const auto adjustedInput { input + input[0] };
     auto sum { 0 };
-    for (size_t i { 0 }; i < input.size(); i++) {
+    for (size_t i { 0 }; i < input.size(); ++i) {
         auto const x { adjustedInput[i] };
         auto const y { adjustedInput[i + 1] };
         if (x == y) {
@@ -26,7 +26,7 @@ int Year2017::Day1Part2(const std::string& input)
 {
     auto sum { 0 };
     auto halfway { input.length() / 2 };
-    for (size_t i { 0 }; i < halfway; i++) {
+    for (size_t i { 0 }; i < halfway; ++i) {
         auto const x { input[i] };
         auto const y { input[i + halfway] };
         if (x == y) {

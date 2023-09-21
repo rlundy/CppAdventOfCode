@@ -20,13 +20,13 @@ CompassDirection Year2016::makeTurn(const CompassDirection direction, const char
     auto directionAsInt { static_cast<int>(direction) };
     switch (turn) {
         case 'L':
-            directionAsInt--;
+            --directionAsInt;
             if (directionAsInt < min) {
                 directionAsInt = max;
             }
             break;
         case 'R':
-            directionAsInt++;
+            ++directionAsInt;
             if (directionAsInt > max) {
                 directionAsInt = min;
             }
@@ -59,7 +59,7 @@ int Year2016::Day1Part1(const std::string& input)
         auto const distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
         auto const [xChange, yChange] { getNextMove(direction) };
-        for (int i { 0 }; i < distance; i++)
+        for (int i { 0 }; i < distance; ++i)
         {
             x += xChange;
             y += yChange;
@@ -84,7 +84,7 @@ int Year2016::Day1Part2(const std::string& input)
         auto const distance { std::stoi(distanceText) };
         direction = makeTurn(direction, turn);
         auto const nextMove { getNextMove(direction) };
-        for (int i {0}; i < distance; i++) {
+        for (int i {0}; i < distance; ++i) {
             auto [xChange, yChange] { nextMove };
             x += xChange;
             y += yChange;

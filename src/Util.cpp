@@ -97,10 +97,10 @@ std::string trim(const std::string& text)
     auto startAt { 0 };
     auto endAt { text.size() - 1 };
     while (std::isspace(text[startAt])) {
-        startAt++;
+        ++startAt;
     }
     while (std::isspace(text[endAt])) {
-        endAt--;
+        --endAt;
     }
     return text.substr(startAt, endAt - startAt + 1);
 }

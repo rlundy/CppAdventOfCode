@@ -50,8 +50,8 @@ int Year2019::Day2Part1(const std::string &input)
 int Year2019::Day2Part2(const std::string &input)
 {
     std::vector<std::pair<int, int>> runValues;
-    for (auto a { 0 }; a < 100; a++)
-    for (auto b { 0 }; b < 100; b++) {
+    for (auto a { 0 }; a < 100; ++a)
+    for (auto b { 0 }; b < 100; ++b) {
         runValues.push_back(std::make_pair(a, b));
     }
 

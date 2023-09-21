@@ -35,7 +35,7 @@ int Year2018::Day1Part2(const std::string& input)
         if (!inserted.second) {
             return sum;
         }
-        current++;
+        ++current;
     }
 }
 
@@ -43,7 +43,7 @@ auto Year2018::group(const std::string& letters) {
     letterGroup grouped;
     for (auto letter : letters) {
         if (grouped.contains(letter))
-            grouped[letter]++;
+            ++grouped[letter];
         else
             grouped.insert({ letter, 1 });
     }
@@ -82,7 +82,7 @@ std::string Year2018::Day2Part2(const std::string& input)
     auto const codes { split(input, "\n") };
     std::unordered_set<std::string> codesWithOneLetterBlankedOut;
     for (auto code : codes) {
-        for (size_t i { 0 }; i < code.length(); i++) {
+        for (size_t i { 0 }; i < code.length(); ++i) {
             auto copy { code };
             copy.replace(i, 1, "_");
             auto [it, added] { codesWithOneLetterBlankedOut.insert(copy) };
