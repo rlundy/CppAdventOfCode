@@ -76,7 +76,31 @@ int Year2017::Day2Part2(const std::string &input)
 
 int Year2017::Day3Part1(const std::string &input)
 {
-    return -1;
+    auto magnitude { 1 };
+    auto sign { 1 };
+    auto xPos { 0 };
+    auto yPos { 0 };
+    auto target { std::stoi(input) };
+    auto counter { 1 };
+    while (counter < target) {
+        for (auto i { 0 }; i < magnitude; ++i) {
+            ++counter;
+            xPos += sign;
+            if (counter == target) {
+                return abs(xPos) + abs(yPos);
+            }
+        }
+        for (auto j { 0 }; j < magnitude; ++j) {
+            ++counter;
+            yPos += sign;
+            if (counter == target) {
+                return abs(xPos) + abs(yPos);
+            }
+        }
+        sign = -sign;
+        ++magnitude;
+    }
+    return abs(xPos) + abs(yPos);
 }
 
 int Year2017::Day3Part2(const std::string &input)
