@@ -94,3 +94,13 @@ std::string Year2018::Day2Part2(const std::string& input)
     }
     throw std::logic_error("Couldn't find two codes that differ by only one letter.");
 }
+
+int Year2018::Day3Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2018::Day3Part2(const std::string &input)
+{
+    return -1;
+}
