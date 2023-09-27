@@ -4,6 +4,8 @@
 #include <cctype>
 #include <algorithm>
 #include <stdexcept>
+#include <sstream>
+#include <unordered_map>
 
 #include "Year2017.hpp"
 #include "Util.hpp"
@@ -103,7 +105,63 @@ int Year2017::Day3Part1(const std::string &input)
     return abs(xPos) + abs(yPos);
 }
 
+std::string Year2017::toKey(int x, int y) {
+    return (std::ostringstream() << x << "," << y).str();
+}
+
+int Year2017::getSumOfSurroundings(int x, int y, std::unordered_map<std::string, int> positions) {
+    std::vector<std::string> keysToLookFor;
+    keysToLookFor.push_back(toKey(x - 1, y - 1));
+    keysToLookFor.push_back(toKey(x, y - 1));
+    keysToLookFor.push_back(toKey(x + 1, y - 1));
+    keysToLookFor.push_back(toKey(x - 1, y));
+    // no x, y of course because that's the current position
+    keysToLookFor.push_back(toKey(x + 1, y));
+    keysToLookFor.push_back(toKey(x - 1, y + 1));
+    keysToLookFor.push_back(toKey(x, y + 1));
+    keysToLookFor.push_back(toKey(x + 1, y + 1));
+
+    int sum { 0 };
+    for (auto key : keysToLookFor) {
+        if (positions.contains(key)) {
+            auto pos = positions.find(key);
+            sum += pos->second;
+        }
+    }
+    return sum;
+}
+
 int Year2017::Day3Part2(const std::string &input)
-{
-    return -1;
+{ 
+    std::unordered_map<std::string, int> positions;
+    auto magnitude { 1 };
+    auto sign { 1 };
+    auto xPos { 0 };
+    auto yPos { 0 };
+    auto currentValue { 1 };
+    positions.emplace(toKey(xPos, yPos), 1);
+    auto target { std::stoi(input) };
+    auto counter { 1 };
+    while (true) {
+        for (auto i { 0 }; i < magnitude; ++i) {
+            ++counter;
+            xPos += sign;
+            auto value { getSumOfSurroundings(xPos, yPos, positions) };
+            if (value > target) {
+                return value;
+            }
+            positions.emplace(toKey(xPos, yPos), value);
+        }
+        for (auto j { 0 }; j < magnitude; ++j) {
+            ++counter;
+            yPos += sign;
+            auto value { getSumOfSurroundings(xPos, yPos, positions) };
+            if (value > target) {
+                return value;
+            }
+            positions.emplace(toKey(xPos, yPos), value);
+        }
+        sign = -sign;
+        ++magnitude;
+    }
 }
