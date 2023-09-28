@@ -104,3 +104,7 @@ std::string trim(const std::string& text)
     }
     return text.substr(startAt, endAt - startAt + 1);
 }
+
+std::string toKey(int x, int y) {
+    return (std::ostringstream() << x << "," << y).str();
+}

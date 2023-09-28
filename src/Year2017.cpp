@@ -105,10 +105,6 @@ int Year2017::Day3Part1(const std::string &input)
     return abs(xPos) + abs(yPos);
 }
 
-std::string Year2017::toKey(int x, int y) {
-    return (std::ostringstream() << x << "," << y).str();
-}
-
 int Year2017::getSumOfSurroundings(int x, int y, std::unordered_map<std::string, int> positions) {
     std::vector<std::string> keysToLookFor;
     keysToLookFor.push_back(toKey(x - 1, y - 1));
