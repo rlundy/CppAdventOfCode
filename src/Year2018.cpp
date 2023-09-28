@@ -11,6 +11,7 @@
 
 #include "Year2018.hpp"
 #include "Util.hpp"
+#include "Rectangle.hpp"
 
 int Year2018::Day1Part1(const std::string& input)
 {
@@ -108,10 +109,11 @@ int Year2018::Day3Part1(const std::string &input)
         auto whText { split(parts[3], "x") };
         auto w { std::stoi(whText[0]) };
         auto h { std::stoi(whText[1]) };
-        for (auto i { 0 }; i < w; i++) {
-            for (auto j { 0 }; j < h; j++) {
-                auto xPos { x + i };
-                auto yPos { y + j };
+        Rectangle r { x, y, w, h };
+        for (auto i { 0 }; i < r.width; i++) {
+            for (auto j { 0 }; j < r.height; j++) {
+                auto xPos { r.x + i };
+                auto yPos { r.y + j };
                 auto tryKey { toKey(xPos, yPos) };
                 auto inserted { takenSquares.insert(tryKey) };
                 if (!inserted.second) {
