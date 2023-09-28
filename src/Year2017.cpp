@@ -120,7 +120,7 @@ int Year2017::getSumOfSurroundings(int x, int y, std::unordered_map<std::string,
     int sum { 0 };
     for (auto key : keysToLookFor) {
         if (positions.contains(key)) {
-            auto pos = positions.find(key);
+            auto pos { positions.find(key) };
             sum += pos->second;
         }
     }
