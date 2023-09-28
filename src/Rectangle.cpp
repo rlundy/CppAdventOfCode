@@ -10,4 +10,5 @@ Rectangle::Rectangle(const std::string &line)
     auto whText { split(parts[3], "x") };
     width = std::stoi(whText[0]);
     height = std::stoi(whText[1]);
+    id = std::stoi(parts[0].substr(1));
 }

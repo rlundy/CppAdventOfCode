@@ -8,4 +8,5 @@ class Rectangle {
         int y;
         int width;
         int height;
+        int id;
 };

@@ -120,5 +120,38 @@ int Year2018::Day3Part1(const std::string &input)
 
 int Year2018::Day3Part2(const std::string &input)
 {
-    return -1;
+    std::unordered_set<std::string> takenSquares;
+    std::unordered_set<std::string> duplicateSquares;
+    auto lines { split(input, "\n") };
+    for (auto line : lines) {
+        Rectangle r { line };
+        for (auto i { 0 }; i < r.width; i++) {
+            for (auto j { 0 }; j < r.height; j++) {
+                auto xPos { r.x + i };
+                auto yPos { r.y + j };
+                auto tryKey { toKey(xPos, yPos) };
+                auto inserted { takenSquares.insert(tryKey) };
+                if (!inserted.second) {
+                    duplicateSquares.insert(tryKey);
+                }
+            }
+        }
+    }
+    for (auto line : lines) {
+        Rectangle r { line };
+        auto foundInDuplicates { false };
+        for (auto i { 0 }; i < r.width; i++) {
+            for (auto j { 0 }; j < r.height; j++) {
+                auto xPos { r.x + i };
+                auto yPos { r.y + j };
+                auto tryKey { toKey(xPos, yPos) };
+                if (duplicateSquares.contains(tryKey)) {
+                    foundInDuplicates = true;
+                }
+            }
+        }
+        if (!foundInDuplicates) {
+            return r.id;
+        }
+    }
 }
