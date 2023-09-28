@@ -97,7 +97,30 @@ std::string Year2018::Day2Part2(const std::string& input)
 
 int Year2018::Day3Part1(const std::string &input)
 {
-    return -1;
+    std::unordered_set<std::string> takenSquares;
+    std::unordered_set<std::string> duplicateSquares;
+    auto lines { split(input, "\n") };
+    for (auto line : lines) {
+        auto parts { split(line, " ") };
+        auto xyText { split(parts[2], ",") };
+        auto x { std::stoi(xyText[0]) };
+        auto y { std::stoi(xyText[1]) };
+        auto whText { split(parts[3], "x") };
+        auto w { std::stoi(whText[0]) };
+        auto h { std::stoi(whText[1]) };
+        for (auto i { 0 }; i < w; i++) {
+            for (auto j { 0 }; j < h; j++) {
+                auto xPos { x + i };
+                auto yPos { y + j };
+                auto tryKey { toKey(xPos, yPos) };
+                auto inserted { takenSquares.insert(tryKey) };
+                if (!inserted.second) {
+                    duplicateSquares.insert(tryKey);
+                }
+            }
+        }
+    }
+    return duplicateSquares.size();
 }
 
 int Year2018::Day3Part2(const std::string &input)

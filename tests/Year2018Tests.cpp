@@ -53,6 +53,8 @@ TEST_CASE("Year 2018 Day 2 Part 2") {
 TEST_CASE("Year 2018 Day 3 Part 1") {
     Year2018 y;
     auto test { std::bind(&Year2018::Day3Part1, &y, std::placeholders::_1) };
+    CHECK(test("#1 @ 1,1: 2x2\n#2 @ 2,1: 2x2\n#3 @ 1,2: 2x2\n#4 @ 2,2: 2x2") == 5);
+    CHECK(test("#1 @ 1,1: 4x4\n#2 @ 2,2: 2x2") == 4);
     CHECK(test("#1 @ 1,3: 4x4\n#2 @ 3,1: 4x4\n#3 @ 5,5: 2x2") == 4);
 }
 
