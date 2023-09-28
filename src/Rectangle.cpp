@@ -2,9 +2,10 @@
 
 #include "Rectangle.hpp"
 #include "Util.hpp"
+#include "Parser.hpp"
 
 Rectangle::Rectangle(const std::string &line)
 {
-    char hash, at, comma, colon, by;
-    std::istringstream(line) >> hash >> id >> at >> x >> comma >> y >> colon >> width >> by >> height;
+    Parser p { line };
+    p >> '#' >> id >> '@' >> x >> ',' >> y >> ':' >> width >> 'x' >> height;
 }
