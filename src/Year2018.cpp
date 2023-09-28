@@ -102,14 +102,7 @@ int Year2018::Day3Part1(const std::string &input)
     std::unordered_set<std::string> duplicateSquares;
     auto lines { split(input, "\n") };
     for (auto line : lines) {
-        auto parts { split(line, " ") };
-        auto xyText { split(parts[2], ",") };
-        auto x { std::stoi(xyText[0]) };
-        auto y { std::stoi(xyText[1]) };
-        auto whText { split(parts[3], "x") };
-        auto w { std::stoi(whText[0]) };
-        auto h { std::stoi(whText[1]) };
-        Rectangle r { x, y, w, h };
+        Rectangle r { line };
         for (auto i { 0 }; i < r.width; i++) {
             for (auto j { 0 }; j < r.height; j++) {
                 auto xPos { r.x + i };
