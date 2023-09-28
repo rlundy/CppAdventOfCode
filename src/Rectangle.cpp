@@ -6,6 +6,5 @@
 
 Rectangle::Rectangle(const std::string &line)
 {
-    Parser p { line };
-    p >> '#' >> id >> '@' >> x >> ',' >> y >> ':' >> width >> 'x' >> height;
+    (Parser(line)) >> '#' >> id >> '@' >> x >> ',' >> y >> ':' >> width >> 'x' >> height;
 }
