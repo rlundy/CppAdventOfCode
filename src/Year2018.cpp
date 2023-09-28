@@ -123,7 +123,7 @@ int Year2018::Day3Part2(const std::string &input)
     std::unordered_set<std::string> takenSquares;
     std::unordered_set<std::string> duplicateSquares;
     auto lines { split(input, "\n") };
-    for (auto line : lines) {
+    for (const auto& line : lines) {
         Rectangle r { line };
         for (auto i { 0 }; i < r.width; i++) {
             for (auto j { 0 }; j < r.height; j++) {
@@ -137,7 +137,7 @@ int Year2018::Day3Part2(const std::string &input)
             }
         }
     }
-    for (auto line : lines) {
+    for (const auto& line : lines) {
         Rectangle r { line };
         auto foundInDuplicates { false };
         for (auto i { 0 }; i < r.width; i++) {
