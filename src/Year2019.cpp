@@ -3,10 +3,14 @@
 #include <vector>
 #include <numeric>
 #include <iterator>
+#include <unordered_set>
+#include <stdexcept>
+#include <set>
 
 #include "Year2019.hpp"
 #include "Util.hpp"
 #include "IntCode.hpp"
+#include "Parser.hpp"
 
 int Year2019::getFuel(const int mass)
 {
@@ -65,5 +69,65 @@ int Year2019::Day2Part2(const std::string &input)
             return 100 * v.first + v.second;
         }
     }
+    return -1;
+}
+
+void Year2019::doStep(char direction, int& x, int& y) {
+    switch (direction) {
+        case 'D': --y; break;
+        case 'U': ++y; break;
+        case 'L': --x; break;
+        case 'R': ++x; break;
+        default: throw std::invalid_argument("Invalid direction.");
+    }
+}
+
+int Year2019::Day3Part1(const std::string &input)
+{
+    auto wires { split(input, "\n") };
+
+    int x1 { 0 }, y1 { 0 };
+    auto w1steps { split(wires[0], ",") };
+    std::set<std::pair<int, int>> w1positions;
+    for (const auto& step : w1steps) {
+        char direction;
+        int distance;
+        Parser(step) >> direction >> distance;
+        for (auto x { 0 }; x < distance; ++x) {
+            doStep(direction, x1, y1);
+            w1positions.insert({x1, y1});
+        }
+    }
+
+    int x2 { 0 }, y2 { 0 };
+    auto w2steps { split(wires[1], ",") };
+    std::set<std::pair<int, int>> intersections;
+    for (const auto& step : w2steps) {
+        char direction;
+        int distance;
+        Parser(step) >> direction >> distance;
+        for (auto y { 0 }; y < distance; ++y) {
+            doStep(direction, x2, y2);
+            if (w1positions.contains({x2, y2})) {
+                intersections.insert({x2, y2});
+            }
+        }
+    }
+
+    std::vector<int> distances;
+    std::transform(
+        intersections.cbegin(),
+        intersections.cend(),
+        std::back_inserter(distances),
+        [](std::pair<int, int> point){ return abs(point.first) + abs(point.second); });
+    auto leastDistance { std::min_element(distances.cbegin(), distances.cend()) };
+    if (leastDistance != distances.cend()) {
+        return *leastDistance;
+    }
+    return -1;
+}
+
+int Year2019::Day3Part2(const std::string &input)
+{
     return -1;
 }
