@@ -153,16 +153,16 @@ int Year2019::Day3Part2(const std::string &input)
     auto w1positions { writeSteps(wires[0]) };
     auto w2positions { writeSteps(wires[1]) };
 
-    std::map<std::string, int> w1distances;
+    std::map<std::pair<int, int>, int> w1distances;
     for (auto i { 0 }; i < w1positions.size(); ++i) {
         auto item { w1positions[i] };
-        w1distances.insert({ toKey(item.first, item.second), i });
+        w1distances.insert({ std::make_pair(item.first, item.second), i });
     }
 
-    std::map<std::string, int> w2distances;
+    std::map<std::pair<int, int>, int> w2distances;
     for (auto i { 0 }; i < w2positions.size(); ++i) {
         auto item { w2positions[i] };
-        w2distances.insert({ toKey(item.first, item.second), i });
+        w2distances.insert({ std::make_pair(item.first, item.second), i });
     }
 
     std::vector<int> intersectionDistances;
