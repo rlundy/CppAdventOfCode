@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <stdexcept>
 #include <set>
+#include <map>
 
 #include "Year2019.hpp"
 #include "Util.hpp"
@@ -127,7 +128,39 @@ int Year2019::Day3Part1(const std::string &input)
     return -1;
 }
 
+std::vector<std::pair<int, int>> Year2019::writeSteps(const std::string& wire) {
+    std::vector<std::pair<int, int>> wirePositions;
+    wirePositions.push_back(std::make_pair(0, 0));
+    int xPos { 0 }, yPos { 0 };
+    auto wireSteps { split(wire, ",") };
+    for (const auto& step : wireSteps) {
+        char direction;
+        int distance;
+        Parser(step) >> direction >> distance;
+        for (auto x { 0 }; x < distance; ++x) {
+            doStep(direction, xPos, yPos);
+            wirePositions.push_back({ xPos, yPos });
+        }
+    }
+    return wirePositions;
+}
+
 int Year2019::Day3Part2(const std::string &input)
 {
-    return -1;
+    auto wires = split(input, "\n");
+
+    auto w1positions { writeSteps(wires[0]) };
+    auto w2positions { writeSteps(wires[1]) };
+    std::vector<int> intersectionDistances;
+
+    for (auto i { 1 }; i < w1positions.size(); ++i) {
+        auto found { std::find(w2positions.cbegin(), w2positions.cend(), w1positions[i]) };
+        if (found != w2positions.cend()) {
+            auto foundPos { found - w2positions.cbegin() };
+            intersectionDistances.push_back(i + foundPos);
+        }
+    }
+
+    std::partial_sort(intersectionDistances.begin(), intersectionDistances.begin() + 1, intersectionDistances.end());
+    return intersectionDistances[0];
 }
