@@ -12,6 +12,7 @@
 #include "Util.hpp"
 #include "IntCode.hpp"
 #include "Parser.hpp"
+#include "Stopwatch.hpp"
 
 int Year2019::getFuel(const int mass)
 {
@@ -147,20 +148,26 @@ std::vector<std::pair<int, int>> Year2019::writeSteps(const std::string& wire) {
 
 int Year2019::Day3Part2(const std::string &input)
 {
+    Stopwatch watch;
     auto wires = split(input, "\n");
 
     auto w1positions { writeSteps(wires[0]) };
+    std::cout << "writeSteps(wires[0]): " << watch.msElapsed() << std::endl;
     auto w2positions { writeSteps(wires[1]) };
+    std::cout << "writeSteps(wires[1]): " << watch.msElapsed() << std::endl;
     std::vector<int> intersectionDistances;
 
     for (auto i { 1 }; i < w1positions.size(); ++i) {
         auto found { std::find(w2positions.cbegin(), w2positions.cend(), w1positions[i]) };
         if (found != w2positions.cend()) {
+            std::cout << "Found " << w1positions[i].first << "," << w1positions[i].second << " at position " << i << ": " << watch.msElapsed() << std::endl;
             auto foundPos { found - w2positions.cbegin() };
             intersectionDistances.push_back(i + foundPos);
         }
     }
+    std::cout << "loop: " << watch.msElapsed() << std::endl;
 
     std::partial_sort(intersectionDistances.begin(), intersectionDistances.begin() + 1, intersectionDistances.end());
+    std::cout << "sort: " << watch.msElapsed() << std::endl;
     return intersectionDistances[0];
 }
