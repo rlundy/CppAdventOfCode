@@ -14,6 +14,7 @@
 #include "Util.hpp"
 #include "CompassDirection.hpp"
 #include "KeypadKey.hpp"
+#include "Parser.hpp"
 
 CompassDirection Year2016::makeTurn(const CompassDirection direction, const char turn) {
     auto const min { static_cast<int>(CompassDirection::MIN) };
@@ -55,9 +56,9 @@ int Year2016::Day1Part1(const std::string& input)
     auto y { 0 };
     auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto const turn { step[0] };
-        auto const distanceText { step.substr(1) };
-        auto const distance { std::stoi(distanceText) };
+        char turn;
+        int distance;
+        Parser(step) >> turn >> distance;
         direction = makeTurn(direction, turn);
         auto const [xChange, yChange] { getNextMove(direction) };
         for (int i { 0 }; i < distance; ++i)
@@ -80,9 +81,9 @@ int Year2016::Day1Part2(const std::string& input)
     auto y { 0 };
     auto direction { CompassDirection::NORTH };
     for (auto step : steps) {
-        auto const turn { step[0] };
-        auto const distanceText { step.substr(1) };
-        auto const distance { std::stoi(distanceText) };
+        char turn;
+        int distance;
+        Parser(step) >> turn >> distance;
         direction = makeTurn(direction, turn);
         auto const nextMove { getNextMove(direction) };
         for (int i {0}; i < distance; ++i) {

@@ -6,6 +6,7 @@
 
 #include "Year2022.hpp"
 #include "Util.hpp"
+#include "Parser.hpp"
 
 std::vector<int> toCalories(const std::string& input) {
     std::vector<int> calories;
@@ -136,9 +137,9 @@ int Year2022::Day2Part1(const std::string &input)
     auto rounds { split(input, "\n") };
     auto totalScore { 0 };
     for (auto round : rounds) {
-        auto parts { split(round, " ") };
-        auto hisPlayChar { parts[0][0] };
-        auto myPlayChar { parts[1][0] };
+        Parser parser(round);
+        char hisPlayChar, myPlayChar;
+        parser >> hisPlayChar >> myPlayChar;
         auto hisPlay { asPlay(hisPlayChar) };
         auto myPlay { asPlay(myPlayChar) };
         auto score { getScore(hisPlay, myPlay) };
@@ -152,9 +153,9 @@ int Year2022::Day2Part2(const std::string &input)
     auto rounds { split(input, "\n") };
     auto totalScore { 0 };
     for (auto round : rounds) {
-        auto parts { split(round, " ") };
-        auto hisPlayChar { parts[0][0] };
-        auto expectedResultChar { parts[1][0] };
+        char hisPlayChar, expectedResultChar;
+        Parser parser(round);
+        parser >> hisPlayChar >> expectedResultChar;
         auto hisPlay { asPlay(hisPlayChar) };
         auto expectedResult { asExpectedResult(expectedResultChar) };
         auto myPlay { getPlay(hisPlay, expectedResult) };

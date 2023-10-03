@@ -3,6 +3,7 @@
 
 #include "Year2020.hpp"
 #include "Util.hpp"
+#include "Parser.hpp"
 
 int Year2020::Day1Part1(const std::string& input) {
     auto const numbers { inputToVector(input) };
@@ -34,13 +35,10 @@ int Year2020::Day1Part2(const std::string& input) {
 }
 
 bool Year2020::IsValid(const std::string& passwordFileLine) {
-    auto parts { split(passwordFileLine, ":") };
-    auto password { trim(parts[1]) };
-    auto frontparts { split(parts[0], " ") };
-    auto letterToFind { frontparts[1][0] };
-    auto range { split(frontparts[0], "-") };
-    auto atLeastTimes { std::stoi(range[0]) };
-    auto atMostTimes { std::stoi(range[1]) };
+    int atLeastTimes, atMostTimes;
+    char letterToFind;
+    std::string password;
+    Parser(passwordFileLine) >> atLeastTimes >> '-' >> atMostTimes >> letterToFind >> ':' >> password;
     // atLeastTimes-atMostTimes letterToFind: password
     auto letterTimes { std::count_if(password.cbegin(), password.cend(), [letterToFind](char p){ return p == letterToFind; }) };
     return letterTimes >= atLeastTimes && letterTimes <= atMostTimes;
@@ -53,13 +51,12 @@ int Year2020::Day2Part1(const std::string &input)
 }
 
 bool Year2020::IsValidPart2(const std::string& passwordFileLine) {
-    auto parts { split(passwordFileLine, ":") };
-    auto password { trim(parts[1]) };
-    auto frontparts { split(parts[0], " ") };
-    auto letterToFind { frontparts[1][0] };
-    auto range { split(frontparts[0], "-") };
-    auto firstPosition { std::stoi(range[0]) - 1 };
-    auto secondPosition { std::stoi(range[1]) - 1 };
+    int firstPosition, secondPosition;
+    char letterToFind;
+    std::string password;
+    Parser(passwordFileLine) >> firstPosition >> '-' >> secondPosition >> letterToFind >> ':' >> password;
+    --firstPosition;
+    --secondPosition;
     // firstPosition-secondPosition letterToFind: password
     auto inFirst { password[firstPosition] == letterToFind };
     auto inSecond { password[secondPosition] == letterToFind };

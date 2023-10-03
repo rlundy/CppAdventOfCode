@@ -2,8 +2,8 @@
 #include <cstdint>
 
 #include "Year2021.hpp"
-
 #include "Util.hpp"
+#include "Parser.hpp"
 
 int Year2021::Day1Part1(const std::string& input) {
     auto depths { inputToVector(input) };
@@ -41,10 +41,9 @@ int64_t Year2021::Day2Part1(const std::string &input)
     int64_t depth { 0 };
     auto directions { split(input, "\n") };
     for (auto dir : directions) {
-        auto currentDirParts { split(dir, " ") };
-        auto currentDirection { currentDirParts[0] };
-        auto currentDistanceText { currentDirParts[1] };
-        auto currentDistance { std::stoi(currentDistanceText) };
+        std::string currentDirection;
+        int currentDistance;
+        Parser(dir) >> currentDirection >> currentDistance;
         if (currentDirection == "forward") {
             distance += currentDistance;
         }
@@ -68,10 +67,9 @@ int64_t Year2021::Day2Part2(const std::string &input)
     int64_t depth { 0 };
     auto directions { split(input, "\n") };
     for (auto dir : directions) {
-        auto parts { split(dir, " ") };
-        auto instruction { parts[0] };
-        auto amountText { parts[1] };
-        auto amount { std::stoi(amountText) };
+        std::string instruction;
+        int amount;
+        Parser(dir) >> instruction >> amount;
         if (instruction == "up") {
             aim -= amount;
         }
