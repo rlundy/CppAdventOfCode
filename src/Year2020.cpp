@@ -69,13 +69,13 @@ int Year2020::Day2Part2(const std::string &input)
     return std::count_if(policies.cbegin(), policies.cend(), [this](std::string policy){ return IsValidPart2(policy); });
 }
 
-int getTreeCount(const std::string& input, int xMove, int yMove) {
+long long getTreeCount(const std::string& input, int xMove, int yMove) {
     auto lines { split(input, "\n" ) };
     auto lineCount { lines.size() };
     auto lineLength { lines.at(0).size() };
 
     auto x { 0 }, y { 0 };
-    auto trees { 0 };
+    long long trees { 0 };
 
     while (y < lineCount) {
         auto line { lines.at(y) };
@@ -93,12 +93,17 @@ int getTreeCount(const std::string& input, int xMove, int yMove) {
     return trees;
 }
 
-int Year2020::Day3Part1(const std::string &input)
+long long Year2020::Day3Part1(const std::string &input)
 {
     return getTreeCount(input, 3, 1);
 }
 
-int Year2020::Day3Part2(const std::string &input)
+long long Year2020::Day3Part2(const std::string &input)
 {
-    return -1;
+    return
+        getTreeCount(input, 1, 1) *
+        getTreeCount(input, 3, 1) *
+        getTreeCount(input, 5, 1) *
+        getTreeCount(input, 7, 1) *
+        getTreeCount(input, 1, 2);
 }
