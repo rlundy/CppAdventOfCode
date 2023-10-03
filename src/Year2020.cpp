@@ -68,3 +68,13 @@ int Year2020::Day2Part2(const std::string &input)
     auto policies { split(input, "\n") };
     return std::count_if(policies.cbegin(), policies.cend(), [this](std::string policy){ return IsValidPart2(policy); });
 }
+
+int Year2020::Day3Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2020::Day3Part2(const std::string &input)
+{
+    return -1;
+}

@@ -11,4 +11,6 @@ class Year2020 {
         int Day2Part1(const std::string &input);
         bool IsValidPart2(const std::string &passwordFileLine);
         int Day2Part2(const std::string &input);
+        int Day3Part1(const std::string &input);
+        int Day3Part2(const std::string &input);
 };
