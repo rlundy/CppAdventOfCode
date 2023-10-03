@@ -44,7 +44,7 @@ int64_t Year2021::Day2Part1(const std::string &input)
         auto currentDirParts { split(dir, " ") };
         auto currentDirection { currentDirParts[0] };
         auto currentDistanceText { currentDirParts[1] };
-        auto currentDistance = std::stoi(currentDistanceText);
+        auto currentDistance { std::stoi(currentDistanceText) };
         if (currentDirection == "forward") {
             distance += currentDistance;
         }
@@ -71,7 +71,7 @@ int64_t Year2021::Day2Part2(const std::string &input)
         auto parts { split(dir, " ") };
         auto instruction { parts[0] };
         auto amountText { parts[1] };
-        auto amount = std::stoi(amountText);
+        auto amount { std::stoi(amountText) };
         if (instruction == "up") {
             aim -= amount;
         }

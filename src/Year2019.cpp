@@ -157,7 +157,7 @@ std::map<std::pair<int, int>, int> Year2019::toMap(std::vector<std::pair<int, in
 
 int Year2019::Day3Part2(const std::string &input)
 {
-    auto wires = split(input, "\n");
+    auto wires { split(input, "\n") };
 
     auto w1positions { writeSteps(wires[0]) };
     auto w2positions { writeSteps(wires[1]) };

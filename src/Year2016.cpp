@@ -180,8 +180,8 @@ bool Year2016::isTriangle(std::vector<int> sides) {
 int Year2016::Day3Part1(const std::string &input)
 {
     auto triangleCount { 0 };
-    auto ints = readInts(input);
-    for (size_t i = 0; i < ints.size(); i+=3)
+    auto ints { readInts(input) };
+    for (size_t i { 0 }; i < ints.size(); i+=3)
     {
         std::vector<int> sides { ints[i], ints[i + 1], ints[i + 2] };
         std::sort(sides.begin(), sides.end());
@@ -195,8 +195,8 @@ int Year2016::Day3Part1(const std::string &input)
 int Year2016::Day3Part2(const std::string &input)
 {
     auto triangleCount { 0 };
-    auto ints = readInts(input);
-    for (size_t i = 0; i < ints.size(); i+=9)
+    auto ints { readInts(input) };
+    for (size_t i { 0 }; i < ints.size(); i+=9)
     {
         std::vector<int> t1 { ints[i], ints[i + 3], ints[i + 6] };
         std::vector<int> t2 { ints[i + 1], ints[i + 4], ints[i + 7] };
