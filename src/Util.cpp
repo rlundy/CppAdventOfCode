@@ -108,5 +108,5 @@ std::string trim(const std::string& text)
 }
 
 std::string toKey(int x, int y) {
-    return (std::ostringstream() << x << "," << y).str();
+    return std::format("{},{}", x, y);
 }
