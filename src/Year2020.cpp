@@ -69,18 +69,17 @@ int Year2020::Day2Part2(const std::string &input)
     return std::count_if(policies.cbegin(), policies.cend(), [this](std::string policy){ return IsValidPart2(policy); });
 }
 
-int Year2020::Day3Part1(const std::string &input)
-{
+int getTreeCount(const std::string& input, int xMove, int yMove) {
     auto lines { split(input, "\n" ) };
     auto lineCount { lines.size() };
     auto lineLength { lines.at(0).size() };
 
-    auto xMove { 3 }, yMove { 1 };
     auto x { 0 }, y { 0 };
     auto trees { 0 };
 
     while (y < lineCount) {
-        auto ch { lines.at(y)[x] };
+        auto line { lines.at(y) };
+        auto ch { line[x] };
         if (ch == '#') {
             ++trees;
         }
@@ -92,6 +91,11 @@ int Year2020::Day3Part1(const std::string &input)
     }
 
     return trees;
+}
+
+int Year2020::Day3Part1(const std::string &input)
+{
+    return getTreeCount(input, 3, 1);
 }
 
 int Year2020::Day3Part2(const std::string &input)
