@@ -146,6 +146,15 @@ std::vector<std::pair<int, int>> Year2019::writeSteps(const std::string& wire) {
     return wirePositions;
 }
 
+std::map<std::pair<int, int>, int> Year2019::toMap(std::vector<std::pair<int, int>> wirePos) {
+    std::map<std::pair<int, int>, int> distances;
+    for (auto i { 0 }; i < wirePos.size(); ++i) {
+        auto item { wirePos[i] };
+        distances.insert({ std::make_pair(item.first, item.second), i });
+    }
+    return distances;
+}
+
 int Year2019::Day3Part2(const std::string &input)
 {
     auto wires = split(input, "\n");
@@ -153,17 +162,8 @@ int Year2019::Day3Part2(const std::string &input)
     auto w1positions { writeSteps(wires[0]) };
     auto w2positions { writeSteps(wires[1]) };
 
-    std::map<std::pair<int, int>, int> w1distances;
-    for (auto i { 0 }; i < w1positions.size(); ++i) {
-        auto item { w1positions[i] };
-        w1distances.insert({ std::make_pair(item.first, item.second), i });
-    }
-
-    std::map<std::pair<int, int>, int> w2distances;
-    for (auto i { 0 }; i < w2positions.size(); ++i) {
-        auto item { w2positions[i] };
-        w2distances.insert({ std::make_pair(item.first, item.second), i });
-    }
+    auto w1distances { toMap(w1positions) };
+    auto w2distances { toMap(w2positions) };
 
     std::vector<int> intersectionDistances;
     for (auto item : w1distances) {
