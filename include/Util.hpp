@@ -1,8 +1,8 @@
+#pragma once
+
 #include <string>
 #include <vector>
 #include <iostream>
-
-#pragma once
 
 std::string getPuzzleInput(const int year, const int day);
 
