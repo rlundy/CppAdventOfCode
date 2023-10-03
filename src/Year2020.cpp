@@ -71,7 +71,27 @@ int Year2020::Day2Part2(const std::string &input)
 
 int Year2020::Day3Part1(const std::string &input)
 {
-    return -1;
+    auto lines { split(input, "\n" ) };
+    auto lineCount { lines.size() };
+    auto lineLength { lines.at(0).size() };
+
+    auto xMove { 3 }, yMove { 1 };
+    auto x { 0 }, y { 0 };
+    auto trees { 0 };
+
+    while (y < lineCount) {
+        auto ch { lines.at(y)[x] };
+        if (ch == '#') {
+            ++trees;
+        }
+        x += xMove;
+        y += yMove;
+        if (x >= lineLength) {
+            x -= lineLength;
+        }
+    }
+
+    return trees;
 }
 
 int Year2020::Day3Part2(const std::string &input)
