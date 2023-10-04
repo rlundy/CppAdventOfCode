@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <map>
 
 class Year2019 {
     private:
@@ -14,6 +15,6 @@ class Year2019 {
         int Day2Part2(const std::string& input);
         void doStep(char direction, int &x, int &y);
         int Day3Part1(const std::string &input);
-        std::vector<std::pair<int, int>> writeSteps(const std::string& wire);
+        std::map<std::pair<int, int>, int> writeSteps(const std::string& wire);
         int Day3Part2(const std::string &input);
 };
