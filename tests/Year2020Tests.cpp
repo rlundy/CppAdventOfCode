@@ -37,5 +37,5 @@ TEST_CASE("Year 2020 Day 3 Part 1") {
 TEST_CASE("Year 2020 Day 3 Part 2") {
     Year2020 y;
     auto test { std::bind(&Year2020::Day3Part2, &y, std::placeholders::_1) };
-    CHECK(test("") == 0);
+    CHECK(test("..##.......\n#...#...#..\n.#....#..#.\n..#.#...#.#\n.#...##..#.\n..#.##.....\n.#.#.#....#\n.#........#\n#.##...#...\n#...##....#\n.#..#...#.#") == 336);
 }
