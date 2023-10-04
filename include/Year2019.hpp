@@ -7,7 +7,6 @@ class Year2019 {
     private:
         int getFuel(const int mass);
         int getFuelRecursive(const int mass);
-        std::map<std::pair<int, int>, int> toMap(std::vector<std::pair<int, int>> wirePos);
     public:
         int Day1Part1(const std::string& input);
         int Day1Part2(const std::string& input);

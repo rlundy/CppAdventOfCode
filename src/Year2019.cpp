@@ -148,15 +148,6 @@ std::map<std::pair<int, int>, int> Year2019::writeSteps(const std::string& wire)
     return wirePositions;
 }
 
-std::map<std::pair<int, int>, int> Year2019::toMap(std::vector<std::pair<int, int>> wirePos) {
-    std::map<std::pair<int, int>, int> distances;
-    for (auto i { 0 }; i < wirePos.size(); ++i) {
-        auto item { wirePos[i] };
-        distances.insert({ std::make_pair(item.first, item.second), i });
-    }
-    return distances;
-}
-
 int Year2019::Day3Part2(const std::string &input)
 {
     auto wires { split(input, "\n") };
