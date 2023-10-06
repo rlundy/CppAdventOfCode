@@ -128,7 +128,6 @@ int Year2021::Day3Part2(const std::string &input)
 {
     auto o2numbers { split(input, "\n") };
     auto co2numbers { split(input, "\n") };
-    const auto singleNumberLength { o2numbers[0].size() };
 
     filterValues(o2numbers, '0', '1');
     filterValues(co2numbers, '1', '0');
