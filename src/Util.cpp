@@ -110,3 +110,15 @@ std::string trim(const std::string& text)
 std::string toKey(int x, int y) {
     return std::format("{},{}", x, y);
 }
+
+int toInt(std::string binaryRepresentation)
+{
+    int result { 0 };
+    for (auto i { 0 }; i < binaryRepresentation.length(); ++i) {
+        if (i > 0) {
+            result <<= 1;
+        }
+        result |= binaryRepresentation[i] - '0';
+    }
+    return result;
+}

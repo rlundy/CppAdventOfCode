@@ -26,6 +26,8 @@ std::string trim(const std::string& text);
 
 std::string toKey(int x, int y);
 
+int toInt(std::string binaryRepresentation);
+
 template<typename T>
 void showResult(int year, int day, int part, T result) {
     auto puzzleInput { getPuzzleInput(year, day) };

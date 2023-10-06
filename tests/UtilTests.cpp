@@ -75,3 +75,9 @@ TEST_CASE("Trim") {
         CHECK(trim(original) == "");
     }
 }
+
+TEST_CASE("Binary string to int") {
+    std::string binary { "10101" };
+    auto result { toInt(binary) };
+    CHECK(result == 0b10101);
+}
