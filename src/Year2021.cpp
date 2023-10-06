@@ -108,49 +108,33 @@ int Year2021::Day3Part1(const std::string &input)
     return mostCommonDec * leastCommonDec;
 }
 
+void Year2021::filterValues(std::vector<std::string>& values, char preferredZeroChar, char preferredOneChar) {
+    const auto singleNumberLength = values[0].size();
+    for (auto i { 0 }; i < singleNumberLength; ++i) {
+        int zeros { 0 };
+        int ones { 0 };
+        for (auto n : values) {
+            n[i] == '0' ? ++zeros : ++ones;
+        }
+        auto removeChar { zeros > ones ? preferredZeroChar : preferredOneChar };
+        std::erase_if(values, [i, removeChar](std::string n){ return n[i] == removeChar; });
+        if (values.size() == 1) {
+            break;
+        }
+    }
+}
+
 int Year2021::Day3Part2(const std::string &input)
 {
     auto o2numbers { split(input, "\n") };
     auto co2numbers { split(input, "\n") };
     const auto singleNumberLength { o2numbers[0].size() };
 
-    for (auto i { 0 }; i < singleNumberLength; ++i) {
-        int zeros { 0 };
-        int ones { 0 };
-        for (auto n : o2numbers) {
-            n[i] == '0' ? ++zeros : ++ones;
-        }
-        auto removeChar { zeros > ones ? '0' : '1' };
-        std::erase_if(o2numbers, [i, removeChar](std::string n){ return n[i] == removeChar; });
-        if (o2numbers.size() == 1) {
-            break;
-        }
-    }
+    filterValues(o2numbers, '0', '1');
+    filterValues(co2numbers, '1', '0');
 
-    for (auto i { 0 }; i < singleNumberLength; ++i) {
-        int zeros { 0 };
-        int ones { 0 };
-        for (auto n : co2numbers) {
-            n[i] == '0' ? ++zeros : ++ones;
-        }
-        auto removeChar { zeros > ones ? '1' : '0' };
-        std::erase_if(co2numbers, [i, removeChar](std::string n){ return n[i] == removeChar; });
-        if (co2numbers.size() == 1) {
-            break;
-        }
-    }
+    auto finalO2number { toInt(o2numbers.at(0)) };
+    auto finalCo2number { toInt(co2numbers.at(0)) };
 
-    if (o2numbers.size() != 1) {
-        throw std::logic_error("Expected 1 O2 number.");
-    }
-
-    if (co2numbers.size() != 1) {
-        throw std::logic_error("Expected 1 CO2 number.");
-    }
-    auto lastO2text { o2numbers.at(0) };
-    auto lastCo2text { co2numbers.at(0) };
-    auto lastO2number { toInt(lastO2text) };
-    auto lastCo2number { toInt(lastCo2text) };
-
-    return lastO2number * lastCo2number;
+    return finalO2number * finalCo2number;
 }

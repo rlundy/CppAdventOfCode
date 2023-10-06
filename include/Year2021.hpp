@@ -2,9 +2,11 @@
 
 #include <string>
 #include <cstdint>
+#include <vector>
 
 class Year2021 {
     private:
+        void filterValues(std::vector<std::string>& values, char preferredZeroChar, char preferredOneChar);
     public:
         int Day1Part1(const std::string& input);
         int Day1Part2(const std::string& input);
