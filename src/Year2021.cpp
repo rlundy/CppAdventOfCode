@@ -86,3 +86,13 @@ int64_t Year2021::Day2Part2(const std::string &input)
     }
     return horizontalPos * depth;
 }
+
+int Year2021::Day3Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2021::Day3Part2(const std::string &input)
+{
+    return -1;
+}

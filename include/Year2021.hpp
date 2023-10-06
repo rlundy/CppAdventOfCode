@@ -10,4 +10,6 @@ class Year2021 {
         int Day1Part2(const std::string& input);
         int64_t Day2Part1(const std::string& input);
         int64_t Day2Part2(const std::string& input);
+        int Day3Part1(const std::string& input);
+        int Day3Part2(const std::string& input);
 };
