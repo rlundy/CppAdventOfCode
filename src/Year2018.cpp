@@ -123,8 +123,11 @@ int Year2018::Day3Part2(const std::string &input)
     std::unordered_set<std::string> takenSquares;
     std::unordered_set<std::string> duplicateSquares;
     auto lines { split(input, "\n") };
+    std::vector<Rectangle> rectangles;
     for (const auto& line : lines) {
-        Rectangle r { line };
+        rectangles.emplace_back(line);
+    }
+    for (auto& r : rectangles) {
         for (auto i { 0 }; i < r.width; i++) {
             for (auto j { 0 }; j < r.height; j++) {
                 auto xPos { r.x + i };
@@ -137,16 +140,17 @@ int Year2018::Day3Part2(const std::string &input)
             }
         }
     }
-    for (const auto& line : lines) {
-        Rectangle r { line };
+    for (auto& r : rectangles) {
         auto foundInDuplicates { false };
         for (auto i { 0 }; i < r.width; i++) {
             for (auto j { 0 }; j < r.height; j++) {
-                auto xPos { r.x + i };
-                auto yPos { r.y + j };
-                auto tryKey { toKey(xPos, yPos) };
-                if (duplicateSquares.contains(tryKey)) {
-                    foundInDuplicates = true;
+                if (!foundInDuplicates) {
+                    auto xPos { r.x + i };
+                    auto yPos { r.y + j };
+                    auto tryKey { toKey(xPos, yPos) };
+                    if (duplicateSquares.contains(tryKey)) {
+                        foundInDuplicates = true;
+                    }
                 }
             }
         }
