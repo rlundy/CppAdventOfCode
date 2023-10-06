@@ -120,8 +120,8 @@ int Year2018::Day3Part1(const std::string &input)
 
 int Year2018::Day3Part2(const std::string &input)
 {
-    std::unordered_set<std::string> takenSquares;
-    std::unordered_set<std::string> duplicateSquares;
+    std::set<std::pair<int, int>> takenSquares;
+    std::set<std::pair<int, int>> duplicateSquares;
     auto lines { split(input, "\n") };
     std::vector<Rectangle> rectangles;
     for (const auto& line : lines) {
@@ -132,7 +132,7 @@ int Year2018::Day3Part2(const std::string &input)
             for (auto j { 0 }; j < r.height; j++) {
                 auto xPos { r.x + i };
                 auto yPos { r.y + j };
-                auto tryKey { toKey(xPos, yPos) };
+                auto tryKey = std::make_pair(xPos, yPos);
                 auto inserted { takenSquares.insert(tryKey) };
                 if (!inserted.second) {
                     duplicateSquares.insert(tryKey);
@@ -147,7 +147,7 @@ int Year2018::Day3Part2(const std::string &input)
                 if (!foundInDuplicates) {
                     auto xPos { r.x + i };
                     auto yPos { r.y + j };
-                    auto tryKey { toKey(xPos, yPos) };
+                    auto tryKey { std::make_pair(xPos, yPos) };
                     if (duplicateSquares.contains(tryKey)) {
                         foundInDuplicates = true;
                     }
