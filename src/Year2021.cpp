@@ -1,5 +1,6 @@
 #include <sstream>
 #include <cstdint>
+#include <stdexcept>
 
 #include "Year2021.hpp"
 #include "Util.hpp"
@@ -89,10 +90,67 @@ int64_t Year2021::Day2Part2(const std::string &input)
 
 int Year2021::Day3Part1(const std::string &input)
 {
-    return -1;
+    std::ostringstream mostCommon;
+    std::ostringstream leastCommon;
+    auto numbers { split(input, "\n") };
+    const auto singleNumberLength { numbers[0].size() };
+    for (auto i { 0 }; i < singleNumberLength; ++i) {
+        int zeros { 0 };
+        int ones { 0 };
+        for (auto n : numbers) {
+            n[i] == '0' ? ++zeros : ++ones;
+        }
+        mostCommon << (zeros > ones ? '0' : '1');
+        leastCommon << (zeros > ones ? '1' : '0');
+    }
+    auto mostCommonDec = toInt(mostCommon.str());
+    auto leastCommonDec = toInt(leastCommon.str());
+    return mostCommonDec * leastCommonDec;
 }
 
 int Year2021::Day3Part2(const std::string &input)
 {
-    return -1;
+    auto o2numbers { split(input, "\n") };
+    auto co2numbers { split(input, "\n") };
+    const auto singleNumberLength { o2numbers[0].size() };
+
+    for (auto i { 0 }; i < singleNumberLength; ++i) {
+        int zeros { 0 };
+        int ones { 0 };
+        for (auto n : o2numbers) {
+            n[i] == '0' ? ++zeros : ++ones;
+        }
+        auto removeChar { zeros > ones ? '0' : '1' };
+        std::erase_if(o2numbers, [i, removeChar](std::string n){ return n[i] == removeChar; });
+        if (o2numbers.size() == 1) {
+            break;
+        }
+    }
+
+    for (auto i { 0 }; i < singleNumberLength; ++i) {
+        int zeros { 0 };
+        int ones { 0 };
+        for (auto n : co2numbers) {
+            n[i] == '0' ? ++zeros : ++ones;
+        }
+        auto removeChar { zeros > ones ? '1' : '0' };
+        std::erase_if(co2numbers, [i, removeChar](std::string n){ return n[i] == removeChar; });
+        if (co2numbers.size() == 1) {
+            break;
+        }
+    }
+
+    if (o2numbers.size() != 1) {
+        throw std::logic_error("Expected 1 O2 number.");
+    }
+
+    if (co2numbers.size() != 1) {
+        throw std::logic_error("Expected 1 CO2 number.");
+    }
+    auto lastO2text { o2numbers.at(0) };
+    auto lastCo2text { co2numbers.at(0) };
+    auto lastO2number { toInt(lastO2text) };
+    auto lastCo2number { toInt(lastCo2text) };
+
+    return lastO2number * lastCo2number;
 }
