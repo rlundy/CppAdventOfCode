@@ -24,3 +24,15 @@ TEST_CASE("Year 2022 Day 2 Part 2") {
     auto test { std::bind(&Year2022::Day2Part2, &y, std::placeholders::_1) };
     CHECK(test("A Y\nB X\nC Z") == 12);
 }
+
+TEST_CASE("Year 2022 Day 3 Part 1") {
+    Year2022 y;
+    auto test { std::bind(&Year2022::Day3Part1, &y, std::placeholders::_1) };
+    CHECK(test("vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw") == 157);
+}
+
+TEST_CASE("Year 2022 Day 3 Part 2") {
+    Year2022 y;
+    auto test { std::bind(&Year2022::Day3Part2, &y, std::placeholders::_1) };
+    CHECK(test("vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw") == 70);
+}

@@ -16,4 +16,6 @@ class Year2022 {
         int Day1Part2(const std::string& input);
         int Day2Part1(const std::string &input);
         int Day2Part2(const std::string& input);
+        int Day3Part1(const std::string& input);
+        int Day3Part2(const std::string& input);
 };

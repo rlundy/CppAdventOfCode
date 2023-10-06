@@ -164,3 +164,13 @@ int Year2022::Day2Part2(const std::string &input)
     }
     return totalScore;
 }
+
+int Year2022::Day3Part1(const std::string &input)
+{
+    return -1;
+}
+
+int Year2022::Day3Part2(const std::string &input)
+{
+    return -1;
+}
