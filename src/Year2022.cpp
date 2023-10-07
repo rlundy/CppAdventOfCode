@@ -4,6 +4,7 @@
 #include <iterator>
 #include <sstream>
 #include <numeric>
+#include <set>
 
 #include "Year2022.hpp"
 #include "Util.hpp"
@@ -178,5 +179,34 @@ int Year2022::Day3Part1(const std::string &input)
 
 int Year2022::Day3Part2(const std::string &input)
 {
-    return -1;
+    Rucksack r;
+    auto sharedItemSums { 0 };
+    auto rucksackTexts { split(input, "\n") };
+    for (auto i { 0 }; i < rucksackTexts.size(); i += 3) {
+        auto r1 { rucksackTexts[i] };
+        auto r2 { rucksackTexts[i + 1] };
+        auto r3 { rucksackTexts[i + 2] };
+        std::set<char> items1;
+        std::set<char> items2;
+        std::set<char> items3;
+        std::set<char> possibleDuplicates;
+        std::for_each(r1.cbegin(), r1.cend(), [&items1](char ch){ items1.insert(ch); });
+        std::for_each(r2.cbegin(), r2.cend(), [&items2](char ch){ items2.insert(ch); });
+        std::for_each(r3.cbegin(), r3.cend(), [&items3](char ch){ items3.insert(ch); });
+
+        std::for_each(items2.cbegin(), items2.cend(), [&items1, &items2, &possibleDuplicates](char ch){
+            auto result { items1.insert(ch) };
+            if (!result.second) {
+                possibleDuplicates.insert(ch);
+            }
+        });
+        for (auto item : items3) {
+            auto result { possibleDuplicates.insert(item) };
+            if (!result.second) {
+                sharedItemSums += r.getPriority(item);
+                break;
+            }
+        }
+    }
+    return sharedItemSums;
 }
