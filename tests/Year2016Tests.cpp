@@ -49,3 +49,15 @@ TEST_CASE("Year 2016 Day 3 Part 2") {
     auto test { std::bind(&Year2016::Day3Part2, &y, std::placeholders::_1) };
     CHECK(test(" 5 10 1 \n 10 11 1 \n 25 12 13 ") == 1);
 }
+
+TEST_CASE("Year 2016 Day 4 Part 1") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day4Part1, &y, std::placeholders::_1) };
+    CHECK(test("aaaaa-bbb-z-y-x-123[abxyz]\na-b-c-d-e-f-g-h-987[abcde]\nnot-a-real-room-404[oarel]\ntotally-real-room-200[decoy]") == 1514);
+}
+
+TEST_CASE("Year 2016 Day 4 Part 2") {
+    Year2016 y;
+    auto test { std::bind(&Year2016::Day4Part2, &y, std::placeholders::_1) };
+    CHECK(test("") == 0);
+}

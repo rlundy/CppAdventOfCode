@@ -15,10 +15,12 @@ class Year2016 {
         bool isTriangle(std::vector<int> sides);
     public:
         CompassDirection makeTurn(const CompassDirection direction, const char turn);
-        int Day1Part1(const std::string &input);
+        int Day1Part1(const std::string& input);
         int Day1Part2(const std::string& input);
         std::string Day2Part1(const std::string& input);
         std::string Day2Part2(const std::string& input);
-        int Day3Part1(const std::string &input);
+        int Day3Part1(const std::string& input);
         int Day3Part2(const std::string& input);
+        int Day4Part1(const std::string& input);
+        int Day4Part2(const std::string& input);
 };

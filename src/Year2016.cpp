@@ -214,3 +214,13 @@ int Year2016::Day3Part2(const std::string &input)
     }
     return triangleCount;
 }
+
+int Year2016::Day4Part1(const std::string& input)
+{
+    return -1;
+}
+
+int Year2016::Day4Part2(const std::string& input)
+{
+    return -1;
+}
