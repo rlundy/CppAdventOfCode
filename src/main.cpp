@@ -30,6 +30,10 @@ int main() {
     t.time([&](){ showResult(2015, 3, 1, y2015.Day3Part1(input2015_3)); });
     t.time([&](){ showResult(2015, 3, 2, y2015.Day3Part2(input2015_3)); });
 
+    // For now, skipping year 2015 day 4, which is about MD5 hashing.
+    // It's slow and I'd rather do other things.
+    // I'll come back to it later, maybe.
+
     std::cout << std::endl;
 
     Year2016 y2016;
