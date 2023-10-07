@@ -1,5 +1,6 @@
 To do
 * Add expected answer for each year/day/part.
 * Compare expected answer with actual answer on run; put ✔ if right, ❌ if wrong.
+* Fix all the warnings.
 
 Done
