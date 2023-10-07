@@ -1,5 +1,6 @@
 #include "catch_amalgamated.hpp"
 #include "Year2022.hpp"
+#include "Rucksack.hpp"
 
 TEST_CASE("Year 2022 Day 1 Part 1") {
     Year2022 y;
@@ -35,4 +36,12 @@ TEST_CASE("Year 2022 Day 3 Part 2") {
     Year2022 y;
     auto test { std::bind(&Year2022::Day3Part2, &y, std::placeholders::_1) };
     CHECK(test("vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw") == 70);
+}
+
+TEST_CASE("Rucksack item priority") {
+    Rucksack r;
+    CHECK(r.getPriority('a') == 1);
+    CHECK(r.getPriority('z') == 26);
+    CHECK(r.getPriority('A') == 27);
+    CHECK(r.getPriority('Z') == 52);
 }
