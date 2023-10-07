@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <iterator>
 #include <sstream>
+#include <numeric>
 
 #include "Year2022.hpp"
 #include "Util.hpp"
 #include "Parser.hpp"
+#include "Rucksack.hpp"
 
 std::vector<int> toCalories(const std::string& input) {
     std::vector<int> calories;
@@ -167,7 +169,11 @@ int Year2022::Day2Part2(const std::string &input)
 
 int Year2022::Day3Part1(const std::string &input)
 {
-    return -1;
+    auto rucksackTexts { split(input, "\n") };
+    std::vector<Rucksack> rucksacks;
+    std::for_each(rucksackTexts.cbegin(), rucksackTexts.cend(), [&rucksacks](std::string rucksackText){ rucksacks.emplace_back(rucksackText); });
+    auto total { std::accumulate(rucksacks.cbegin(), rucksacks.cend(), 0, [](auto runningTotal, Rucksack r){ return runningTotal + r.getMisplaceItemPriority(); }) };
+    return total;
 }
 
 int Year2022::Day3Part2(const std::string &input)
