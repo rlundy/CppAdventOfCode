@@ -6,15 +6,13 @@
 #include "EncryptedRoom.hpp"
 #include "Util.hpp"
 
-std::vector<std::pair<char, int>> EncryptedRoom::toSortedCollection(std::map<char, int> charCounts)
+void EncryptedRoom::toSortedCollection(std::map<char, int>& charCounts, std::vector<std::pair<char, int>>& sortedCollection)
 {
-    std::vector<std::pair<char, int>> sortableCharCounts;
-    std::for_each(charCounts.cbegin(), charCounts.cend(), [&sortableCharCounts](std::pair<char, int> item){ sortableCharCounts.push_back(item); });
-    std::sort(sortableCharCounts.begin(), sortableCharCounts.end(), [](std::pair<char, int> a, std::pair<char, int> b){
+    std::for_each(charCounts.cbegin(), charCounts.cend(), [&sortedCollection](std::pair<char, int> item){ sortedCollection.push_back(item); });
+    std::sort(sortedCollection.begin(), sortedCollection.end(), [](std::pair<char, int> a, std::pair<char, int> b){
         auto result { a.second > b.second };
         return result ? result : a.first < b.first;
     });
-    return sortableCharCounts;
 }
 
 EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum)
@@ -53,10 +51,12 @@ std::optional<int> EncryptedRoom::isValidRoom()
         }
     }
 
-    auto sortableCharCounts { toSortedCollection(charCounts) };
+    std::vector<std::pair<char, int>> sortedCollection;
+
+    toSortedCollection(charCounts, sortedCollection);
 
     for (auto i { 0 }; i < 5; ++i) {
-        auto thisChar { sortableCharCounts.at(i).first };
+        auto thisChar { sortedCollection.at(i).first };
         if (!checksumChars.contains(thisChar)) {
             return std::nullopt;
         }

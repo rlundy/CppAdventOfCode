@@ -8,7 +8,7 @@
 class EncryptedRoom {
     private:
         std::string roomNameSectorIdChecksum;
-        std::vector<std::pair<char, int>> toSortedCollection(std::map<char, int> charCounts);
+        void toSortedCollection(std::map<char, int>& charCounts, std::vector<std::pair<char, int>>& sortedCollection);
     public:
         EncryptedRoom(const std::string& roomNameSectorIdChecksum);
         std::optional<int> isValidRoom();
