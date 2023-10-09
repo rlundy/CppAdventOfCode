@@ -22,12 +22,7 @@ void EncryptedRoom::toSortedCollection(const std::map<char, int>& charCounts, st
 void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
     for (auto n : nameParts) {
         for (auto ch : n) {
-            if (charCounts.contains(ch)) {
-                charCounts.at(ch)++;
-            }
-            else {
-                charCounts.insert({ ch, 1 });
-            }
+            ++charCounts[ch];
         }
     }
 }
