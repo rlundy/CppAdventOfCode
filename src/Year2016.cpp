@@ -15,6 +15,7 @@
 #include "CompassDirection.hpp"
 #include "KeypadKey.hpp"
 #include "Parser.hpp"
+#include "EncryptedRoom.hpp"
 
 CompassDirection Year2016::makeTurn(const CompassDirection direction, const char turn) {
     auto const min { static_cast<int>(CompassDirection::MIN) };
@@ -217,7 +218,14 @@ int Year2016::Day3Part2(const std::string &input)
 
 int Year2016::Day4Part1(const std::string& input)
 {
-    return -1;
+    auto validRoomSectorIdSum { 0 };
+    auto rooms { split(input, "\n") };
+    for (auto room : rooms) {
+        EncryptedRoom r(room);
+        validRoomSectorIdSum += r.isValidRoom().value_or(0);
+    }
+
+    return validRoomSectorIdSum;
 }
 
 int Year2016::Day4Part2(const std::string& input)
