@@ -15,6 +15,19 @@ void EncryptedRoom::toSortedCollection(std::map<char, int>& charCounts, std::vec
     });
 }
 
+void EncryptedRoom::countChars(std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
+    for (auto n : nameParts) {
+        for (auto ch : n) {
+            if (charCounts.contains(ch)) {
+                charCounts.at(ch)++;
+            }
+            else {
+                charCounts.insert({ ch, 1 });
+            }
+        }
+    }
+}
+
 EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum)
 {
     this->roomNameSectorIdChecksum = roomNameSectorIdChecksum;
@@ -40,16 +53,7 @@ std::optional<int> EncryptedRoom::isValidRoom()
     // nameParts; sectorId; checksum
 
     std::map<char, int> charCounts;
-    for (auto n : nameParts) {
-        for (auto ch : n) {
-            if (charCounts.contains(ch)) {
-                charCounts.at(ch)++;
-            }
-            else {
-                charCounts.insert({ ch, 1 });
-            }
-        }
-    }
+    countChars(nameParts, charCounts);
 
     std::vector<std::pair<char, int>> sortedCollection;
 
