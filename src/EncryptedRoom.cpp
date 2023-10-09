@@ -42,6 +42,7 @@ std::optional<int> EncryptedRoom::isValidRoom()
     auto parts { split(roomNameSectorIdChecksum, "]") };
     auto nameSectorIdChecksum { split(parts.at(0), "[") };
     auto checksum { nameSectorIdChecksum.at(1) };
+    auto checksumLength { checksum.length() };
     std::set<char> checksumChars;
     for (auto ch : checksum) {
         checksumChars.insert(ch);
@@ -63,7 +64,7 @@ std::optional<int> EncryptedRoom::isValidRoom()
 
     toSortedCollection(charCounts, sortedCollection);
 
-    for (auto i { 0 }; i < 5; ++i) {
+    for (auto i { 0 }; i < checksumLength; ++i) {
         auto thisChar { sortedCollection.at(i).first };
         if (!checksumChars.contains(thisChar)) {
             return std::nullopt;
