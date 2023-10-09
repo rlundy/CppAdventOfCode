@@ -9,10 +9,14 @@
 void EncryptedRoom::toSortedCollection(const std::map<char, int>& charCounts, std::vector<std::pair<char, int>>& sortedCollection)
 {
     std::for_each(charCounts.cbegin(), charCounts.cend(), [&sortedCollection](std::pair<char, int> item){ sortedCollection.push_back(item); });
-    std::sort(sortedCollection.begin(), sortedCollection.end(), [](std::pair<char, int> a, std::pair<char, int> b){
-        auto result { a.second > b.second };
-        return result ? result : a.first < b.first;
-    });
+    std::sort(
+        sortedCollection.begin(),
+        sortedCollection.end(),
+        [](std::pair<char, int> a, std::pair<char, int> b) {
+            auto result { a.second > b.second };
+            return result ? result : a.first < b.first;
+        }
+    );
 }
 
 void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
