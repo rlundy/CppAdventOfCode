@@ -35,6 +35,12 @@ TEST_CASE("Split") {
     }
 }
 
+TEST_CASE("Join") {
+    std::vector<std::string> strings { "aaaaa", "bbb", "x", "y", "z" };
+    auto joined { join(strings, "-") };
+    CHECK(joined == "aaaaa-bbb-x-y-z");
+}
+
 TEST_CASE("Read ints") {
     SECTION("Leading and trailing white space") {
         std::string original { "\n  111 \n 222\n \n333\n\n444  555  \n" };

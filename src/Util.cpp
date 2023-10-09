@@ -58,6 +58,18 @@ std::vector<std::string> split(const std::string& original, const std::string& d
     return parts;
 }
 
+std::string join(std::vector<std::string> strings, std::string joinText)
+{
+    std::ostringstream result;
+    for (auto i { 0 }; i < strings.size(); ++i) {
+        if (i > 0) {
+            result << joinText;
+        }
+        result << strings[i];
+    }
+    return result.str();
+}
+
 bool contains(const std::string &text, const std::string &textToFind)
 {
     return text.find(textToFind) != std::string::npos;

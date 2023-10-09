@@ -10,6 +10,8 @@ std::string readFileContents(const std::string &filePath);
 
 std::vector<std::string> split(const std::string& original, const std::string& delimiter, const bool keepEmptyParts = false);
 
+std::string join(std::vector<std::string> strings, std::string joinText);
+
 std::vector<int> readInts(const std::string& original);
 
 bool contains(const std::string& text, const std::string& textToFind);
