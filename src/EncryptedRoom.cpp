@@ -6,7 +6,7 @@
 #include "EncryptedRoom.hpp"
 #include "Util.hpp"
 
-void EncryptedRoom::toSortedCollection(std::map<char, int>& charCounts, std::vector<std::pair<char, int>>& sortedCollection)
+void EncryptedRoom::toSortedCollection(const std::map<char, int>& charCounts, std::vector<std::pair<char, int>>& sortedCollection)
 {
     std::for_each(charCounts.cbegin(), charCounts.cend(), [&sortedCollection](std::pair<char, int> item){ sortedCollection.push_back(item); });
     std::sort(sortedCollection.begin(), sortedCollection.end(), [](std::pair<char, int> a, std::pair<char, int> b){
@@ -15,7 +15,7 @@ void EncryptedRoom::toSortedCollection(std::map<char, int>& charCounts, std::vec
     });
 }
 
-void EncryptedRoom::countChars(std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
+void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
     for (auto n : nameParts) {
         for (auto ch : n) {
             if (charCounts.contains(ch)) {
