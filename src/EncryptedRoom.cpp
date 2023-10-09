@@ -27,10 +27,7 @@ void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::m
     }
 }
 
-EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum)
-{
-    this->roomNameSectorIdChecksum = roomNameSectorIdChecksum;
-}
+EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum) : roomNameSectorIdChecksum { roomNameSectorIdChecksum } {}
 
 std::optional<int> EncryptedRoom::isValidRoom()
 {
