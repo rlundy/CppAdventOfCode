@@ -19,7 +19,7 @@ void EncryptedRoom::toSortedCollection(const std::map<char, int>& charCounts, st
     );
 }
 
-void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::map<char, int>& charCounts) {
+void EncryptedRoom::countChars(std::map<char, int>& charCounts) {
     for (auto n : nameParts) {
         for (auto ch : n) {
             ++charCounts[ch];
@@ -27,15 +27,10 @@ void EncryptedRoom::countChars(const std::vector<std::string>& nameParts, std::m
     }
 }
 
-EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum) : roomNameSectorIdChecksum { roomNameSectorIdChecksum } {}
-
-std::optional<int> EncryptedRoom::isValidRoom()
-{
+EncryptedRoom::EncryptedRoom(const std::string &roomNameSectorIdChecksum) : roomNameSectorIdChecksum { roomNameSectorIdChecksum } {
     auto parts { split(roomNameSectorIdChecksum, "]") };
     auto nameSectorIdChecksum { split(parts.at(0), "[") };
     auto checksum { nameSectorIdChecksum.at(1) };
-    auto checksumLength { checksum.length() };
-    std::set<char> checksumChars;
     for (auto ch : checksum) {
         checksumChars.insert(ch);
     }
@@ -43,20 +38,22 @@ std::optional<int> EncryptedRoom::isValidRoom()
     auto namePartsSectorId { split(nameSectorIdChecksum.at(0), "-") };
 
     auto sectorIdText { namePartsSectorId.back() };
-    auto sectorId { std::stoi(sectorIdText) };
+    sectorId = std::stoi(sectorIdText);
     namePartsSectorId.pop_back();
-    auto nameParts { namePartsSectorId };
+    nameParts = namePartsSectorId;
+    roomName = join(nameParts, "-");
+}
 
-    // nameParts; sectorId; checksum
-
+std::optional<int> EncryptedRoom::isValidRoom()
+{
     std::map<char, int> charCounts;
-    countChars(nameParts, charCounts);
+    countChars(charCounts);
 
     std::vector<std::pair<char, int>> sortedCollection;
 
     toSortedCollection(charCounts, sortedCollection);
 
-    for (auto i { 0 }; i < checksumLength; ++i) {
+    for (auto i { 0 }; i < checksumChars.size(); ++i) {
         auto thisChar { sortedCollection.at(i).first };
         if (!checksumChars.contains(thisChar)) {
             return std::nullopt;
