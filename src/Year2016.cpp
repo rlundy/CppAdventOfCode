@@ -230,5 +230,23 @@ int Year2016::Day4Part1(const std::string& input)
 
 int Year2016::Day4Part2(const std::string& input)
 {
-    return -1;
+    std::set<std::string> nonChristmasNamesToSkip { "bunny", "egg", "rabbit", "flower", "candy", "basket", "jellybean", "dye", "chocolate", "grass", "scavenger" };
+    auto rooms { split(input, "\n") };
+    std::vector<EncryptedRoom> possibleRooms;
+    for (auto room : rooms) {
+        auto isPossible { true };
+        EncryptedRoom r(room);
+        auto decryptedName { r.getDecryptedName() };
+        auto decryptedNameParts { split(decryptedName, " ") };
+        for (auto p : decryptedNameParts) {
+            if (nonChristmasNamesToSkip.contains(p)) {
+                isPossible = false;
+            }
+        }
+        if (isPossible) {
+            std::cout << room << " : " << decryptedName << std::endl;
+            possibleRooms.push_back(r);
+        }
+    }
+    return possibleRooms.at(0).getSectorId();
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <set>
+#include <sstream>
 
 #include "EncryptedRoom.hpp"
 #include "Util.hpp"
@@ -59,5 +60,27 @@ std::optional<int> EncryptedRoom::isValidRoom()
             return std::nullopt;
         }
     }
+    return sectorId;
+}
+
+std::string EncryptedRoom::getDecryptedName() {
+    auto moveAmount { sectorId % 26 };
+    std::ostringstream result;
+    for (auto ch : roomName) {
+        if (ch == '-') {
+            result << ' ';
+        }
+        else {
+            auto chResult { ch + moveAmount };
+            if (chResult > 'z') {
+                chResult -= 26;
+            }
+            result << static_cast<char>(chResult);
+        }
+    }
+    return result.str();
+}
+
+int EncryptedRoom::getSectorId() {
     return sectorId;
 }

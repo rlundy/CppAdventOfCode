@@ -18,4 +18,6 @@ class EncryptedRoom {
     public:
         EncryptedRoom(const std::string& roomNameSectorIdChecksum);
         std::optional<int> isValidRoom();
+        std::string getDecryptedName();
+        int getSectorId();
 };
