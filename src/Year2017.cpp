@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "Year2017.hpp"
 #include "Util.hpp"
@@ -160,4 +161,31 @@ int Year2017::Day3Part2(const std::string &input)
         sign = -sign;
         ++magnitude;
     }
+}
+
+int Year2017::Day4Part1(const std::string &input)
+{
+    auto passphrases { split(input, "\n") };
+    auto numberValid { 0 };
+    for (auto phrase : passphrases) {
+        auto isValid { true };
+        auto words { split(phrase, " ") };
+        std::unordered_set<std::string> duplicates;
+        for (auto word : words) {
+            auto [it, added] { duplicates.insert(word) };
+            if (!added) {
+                isValid = false;
+            }
+        }
+        if (isValid) {
+            ++numberValid;
+        }
+    }
+    
+    return numberValid;
+}
+
+int Year2017::Day4Part2(const std::string &input)
+{
+    return -1;
 }

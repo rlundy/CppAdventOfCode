@@ -80,3 +80,21 @@ TEST_CASE("Year 2017 Day 3 Part 2") {
     CHECK(test("362") == 747);
     CHECK(test("747") == 806);
 }
+
+TEST_CASE("Year 2017 Day 4 Part 1") {
+    Year2017 y;
+    auto test { std::bind(&Year2017::Day4Part1, &y, std::placeholders::_1) };
+    CHECK(test("aa bb cc dd ee") == 1);
+    CHECK(test("aa bb cc dd aa") == 0);
+    CHECK(test("aa bb cc dd aaa") == 1);
+}
+
+TEST_CASE("Year 2017 Day 4 Part 2") {
+    Year2017 y;
+    auto test { std::bind(&Year2017::Day4Part2, &y, std::placeholders::_1) };
+    CHECK(test("abcde fghij") == 1);
+    CHECK(test("abcde xyz ecdab") == 0);
+    CHECK(test("a ab abc abd abf abj") == 1);
+    CHECK(test("iiii oiii ooii oooi oooo") == 1);
+    CHECK(test("oiii ioii iioi iiio") == 0);
+}

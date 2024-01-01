@@ -13,4 +13,6 @@ class Year2017 {
         int getSumOfSurroundings(int x, int y, std::unordered_map<std::string, int> positions);
         int Day3Part1(const std::string& input);
         int Day3Part2(const std::string &input);
+        int Day4Part1(const std::string& input);
+        int Day4Part2(const std::string& input);
 };
