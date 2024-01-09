@@ -167,14 +167,15 @@ int Year2017::Day4Part1(const std::string &input)
 {
     auto passphrases { split(input, "\n") };
     auto numberValid { 0 };
-    for (auto phrase : passphrases) {
+    for (const auto& phrase : passphrases) {
         auto isValid { true };
         auto words { split(phrase, " ") };
         std::unordered_set<std::string> duplicates;
-        for (auto word : words) {
+        for (const auto& word : words) {
             auto [it, added] { duplicates.insert(word) };
             if (!added) {
                 isValid = false;
+                break;
             }
         }
         if (isValid) {
@@ -189,7 +190,7 @@ int Year2017::Day4Part2(const std::string &input)
 {
     auto passphrases { split(input, "\n") };
     auto numberValid { 0 };
-    for (auto phrase : passphrases) {
+    for (const auto& phrase : passphrases) {
         auto isValid { true };
         auto words { split(phrase, " ") };
         std::unordered_set<std::string> duplicates;
@@ -198,6 +199,7 @@ int Year2017::Day4Part2(const std::string &input)
             auto [it, added] { duplicates.insert(word) };
             if (!added) {
                 isValid = false;
+                break;
             }
         }
 
